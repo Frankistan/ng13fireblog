@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+
+    <app-btn-menu [drawer]="drawer"></app-btn-menu>
+    <span>ANGULAR 13 MATERIAL</span>
+
+    <span fxFlex></span>
+    <!--
+    <app-btn-lang></app-btn-lang>
+    <app-btn-filter></app-btn-filter>
+    <app-btn-more></app-btn-more>
+    <app-btn-sort></app-btn-sort>
+
+    <app-btn-view></app-btn-view>
+    <app-btn-search></app-btn-search>
+    -->
+
+
+
+    <ng-container>
+        <a routerLink="/auth/login" mat-button fxHide.xs (click)="drawer.close()">
+            LOGIN
+        </a>
+        <a routerLink="/auth/login" mat-icon-button fxHide.gt-xs matTooltip="LOGIN" [matTooltipClass]="'tooltip'">
+            <mat-icon aria-label="iniciar sesion">fingerprint</mat-icon>
+        </a>
+    </ng-container>
+
+    <!-- <app-btn-profile></app-btn-profile> -->
+
+</mat-toolbar>
