@@ -1,0 +1,17 @@
+<button fxHide.xs="true" mat-button [matMenuTriggerFor]="languageMenu">
+    {{ 'navbar.language' | translate }}
+</button>
+<button fxHide.gt-xs="true" matTooltip="{{ 'tooltips.language' | translate }}" [matTooltipClass]="'tooltip'"
+    mat-icon-button [matMenuTriggerFor]="languageMenu">
+    <mat-icon>language</mat-icon>
+</button>
+<ng-template #text>
+    <button mat-button color="primary" [matMenuTriggerFor]="languageMenu">
+        {{ currentLanguage }}
+    </button>
+</ng-template>
+<mat-menu #languageMenu="matMenu">
+    <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
+        {{ language }}
+    </button>
+</mat-menu>

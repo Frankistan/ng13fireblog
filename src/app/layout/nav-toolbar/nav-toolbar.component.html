@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="mat-elevation-z8">
 
     <app-btn-menu [drawer]="drawer"></app-btn-menu>
     <span>ANGULAR 13 MATERIAL</span>
@@ -13,10 +13,11 @@
     <app-btn-view></app-btn-view>
     <app-btn-search></app-btn-search>
     -->
-
+    <app-btn-language-selector></app-btn-language-selector>
 
 
     <ng-container>
+
         <a routerLink="/auth/login" mat-button fxHide.xs (click)="drawer.close()">
             LOGIN
         </a>

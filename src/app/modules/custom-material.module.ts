@@ -25,12 +25,18 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+
+
 import {
     MatMomentDateModule,
     MomentDateAdapter,
     MAT_MOMENT_DATE_FORMATS
 } from "@angular/material-moment-adapter";
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+
 
 @NgModule({
     exports: [
@@ -61,6 +67,9 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
     ],
     providers: [
         {
