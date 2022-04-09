@@ -18,7 +18,7 @@ import {
     docSnapshots,
     getFirestore,
 } from '@angular/fire/firestore';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from '@app/models/post';
 import { environment } from '@env/environment';
 import { getApp } from 'firebase/app';
@@ -27,15 +27,26 @@ import { map, Observable } from 'rxjs';
 /*
 https://youtu.be/CC0GuG2uVwQ
 https://firebase.google.com/docs/firestore/query-data/listen?hl=es-419
+https://www.codegrepper.com/code-examples/javascript/firestore+v9+addDoc+and+setDoc+collection%28%29+doc%28%29
+
+VER CÓMO RECUPERA/OBTIENE LOS TWEETS DEL USUARIO LOGEADO ASI COMO LOS EVENTOS ADD, UPDATE..ETC
+https://youtu.be/DKe3oAt2_KE?t=1737
 MATERAIL CHIPS 
 https://www.positronx.io/angular-material-reactive-forms-validation-tutorial/
 */
 
+export interface Subject {
+    name: string;
+}
 
 @Injectable({
     providedIn: 'root'
 })
 export class PostService {
+    // data
+    data = {
+        names: ['name1', 'name2']
+    }
 
     constructor(
         private afs: Firestore,
@@ -51,10 +62,21 @@ export class PostService {
             title: ["", [Validators.required]],
             content: ["", Validators.required],
             featured_image: ["", Validators.pattern(regex)],
-            tags: this._fb.array([])
+
+            names: this._fb.array(this.data.names, this.validateArrayNotEmpty)
         });
 
         return postForm;
+    }
+
+    validateArrayNotEmpty(c: AbstractControl
+    ) {
+        if (c.value && c.value.length === 0) {
+            return {
+                validateArrayNotEmpty: { valid: false }
+            };
+        }
+        return null;
     }
 
     list(): Observable<any> {

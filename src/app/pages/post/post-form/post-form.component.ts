@@ -1,9 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, FormGroupName } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { IPost } from '@app/models/post';
 import { I18nService } from '@app/services/i18n.service';
 import { PostService } from '@app/services/post.service';
+import { ENTER, COMMA } from "@angular/cdk/keycodes";
+
+/*
+https://www.angularfix.com/2022/01/angular-2-material-mat-chip-list.html
+https://stackblitz.com/edit/angular-4d5vfj-gywxjz?file=app%2Fchip-list-validation-example.ts
+https://www.lindseybroos.be/2020/06/angular-material-chiplist-with-autocomplete-and-validation/
+*/
+
+export interface Subject {
+    name: string;
+}
 
 @Component({
     selector: 'app-post-form',
@@ -12,7 +23,7 @@ import { PostService } from '@app/services/post.service';
 })
 export class PostFormComponent implements OnInit {
 
-    postForm!: FormGroup;
+    form!: FormGroup;
     private _post!: IPost;
 
     options: any = {
@@ -20,10 +31,12 @@ export class PostFormComponent implements OnInit {
     };
 
     //chips
-    visible: boolean = true;
-    selectable: boolean = true;
-    removable: boolean = true;
-    addOnBlur: boolean = true;
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+
+    @ViewChild('chipList', { static: true }) chipList!: MatChipList;
 
     constructor(
         public postService: PostService,
@@ -32,31 +45,30 @@ export class PostFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.createForm();
+        this.form.get('names')?.statusChanges.subscribe(
+            status => this.chipList.errorState = status === 'INVALID'
+        );
     }
 
     private createForm() {
-        this.postForm = this.postService.form;
-        this.postForm.controls['featured_image'].setValue("");
-        this._post = this.postForm.value;
+        this.form = this.postService.form;
+        this.form.controls['featured_image'].setValue("");
+        this._post = this.form.value;
     }
 
-    private randomIntFromInterval(min: any, max: any) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
+    get names(): FormArray {
+        return <FormArray>this.form.get('names');
     }
 
-    get tags(): FormArray {
-        return <FormArray>this.postForm.get('tags');
-    }
-
-
-
-    addTag(event: MatChipInputEvent): void {
+    add(event: MatChipInputEvent, form: FormGroup): void {
         const input = event.input;
         const value = event.value;
 
-        // Add our requirement
+        // Add name
         if ((value || '').trim()) {
-            this.tags.push(new FormControl({ id: this.randomIntFromInterval(1000, 9999), text: value.trim() }));
+
+            this.names.push(new FormControl(value.trim()));
+            console.log(this.names);
         }
 
         // Reset the input value
@@ -65,13 +77,10 @@ export class PostFormComponent implements OnInit {
         }
     }
 
-    removeTag(index: number): void {
-
-        if (index >= 0) {
-            this.tags.removeAt(index);
-        }
+    remove(form: any, index: any) {
+        console.log(form);
+        form.get('names').removeAt(index);
     }
-
 
     save() { }
 }

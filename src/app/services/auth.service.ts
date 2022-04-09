@@ -45,6 +45,10 @@ import { updateDoc } from 'firebase/firestore';
 import { catchError, empty, from, map, Observable, of, switchMap, take, tap } from 'rxjs';
 import { NotificationService } from './notification.service';
 
+/*
+https://dev.to/jdgamble555/angular-12-with-firebase-9-49a0
+*/
+
 @Injectable({
     providedIn: 'root'
 })
