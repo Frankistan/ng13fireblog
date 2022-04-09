@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { IUser } from '@app/models/user';
 import { AuthService } from '@app/services/auth.service';
 import { I18nService } from '@app/services/i18n.service';
 import { SettingsService } from '@app/services/settings.service';
-import { Subject, tap } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 
 @Component({
     selector: 'app-settings',
@@ -17,8 +18,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
     ischecked!: boolean;
 
     form!: FormGroup;
-    user$: any;
-    user: any;
+    user$!: Observable<IUser>;
+    user!: IUser;
+
 
     constructor(
         private _i18n: I18nService,
@@ -27,14 +29,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.createForm();
-
-        this.user$ = this._auth.loggedInUser$.pipe(tap(user => this.user = user))
-    }
-
-    createForm() {
         this.form = this._settingsService.form;
+
+        this.user$ = this._auth.loggedInUser$.pipe(tap(user => {
+            this.form.patchValue(user.settings);
+            this.user = user;
+
+            this._i18n.language = this.form.get('language')?.value;
+        }));
     }
+
 
     onChange(value: MatSlideToggleChange) {
         this.ischecked = value.checked;
@@ -47,6 +51,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         };
 
         this._settingsService.save(NUser);
+
     }
 
     get language(): string {

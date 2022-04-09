@@ -12,6 +12,6 @@ export interface IUser {
     profileURL?: string,
     providerId?: string,
     ps?: string,
-    settings?: string,
+    settings?: any,
     workPlace?: string,
 }
