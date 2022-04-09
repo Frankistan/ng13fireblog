@@ -49,6 +49,7 @@ import { SidenavContentComponent } from './layout/sidenav-content/sidenav-conten
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { TableComponent } from './pages/table/table.component';
 import { SettingsService } from './services/settings.service';
+import { StoreService } from './services/store.service';
 
 @NgModule({
     declarations: [
@@ -100,6 +101,7 @@ import { SettingsService } from './services/settings.service';
         LoggedInGuard,
         SettingsService,
         // DiscardChangesGuard,
+        StoreService,
         CustomTitleService,
         {
             provide: APP_INITIALIZER,

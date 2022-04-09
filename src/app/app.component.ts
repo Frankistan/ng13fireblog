@@ -1,19 +1,20 @@
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { Subject, Observable, map, shareReplay, takeUntil } from 'rxjs';
 import { IUser } from './models/user';
 import { AuthService } from './services/auth.service';
+import { StoreService } from './services/store.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
     title = 'Angular 13 Material Scaffolding';
 
-    @ViewChild('drawer', { static: true }) public drawer!: MatDrawer;
+    @ViewChild('drawer', { static: true }) public drawer!: MatSidenav;
 
     private destroy = new Subject<void>();
 
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
     constructor(
         private _bpo: BreakpointObserver,
         private auth: AuthService,
+        private storeService: StoreService
     ) { }
 
     ngOnInit() {
@@ -37,6 +39,8 @@ export class AppComponent implements OnInit {
         this.user$ = this.auth.loggedInUser$;
 
         this.isAuthenticated$ = this.auth.isAuthenticated$;
+
+
 
     }
 
@@ -47,4 +51,9 @@ export class AppComponent implements OnInit {
                 if (result) this.drawer.close();
             });
     }
+
+    ngAfterViewInit(): void {
+        this.storeService.setSidenav(this.drawer);
+    }
+
 }
