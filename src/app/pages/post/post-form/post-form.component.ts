@@ -12,10 +12,6 @@ https://stackblitz.com/edit/angular-4d5vfj-gywxjz?file=app%2Fchip-list-validatio
 https://www.lindseybroos.be/2020/06/angular-material-chiplist-with-autocomplete-and-validation/
 */
 
-export interface Subject {
-    name: string;
-}
-
 @Component({
     selector: 'app-post-form',
     templateUrl: './post-form.component.html',
@@ -45,7 +41,7 @@ export class PostFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.createForm();
-        this.form.get('names')?.statusChanges.subscribe(
+        this.form.get('tags')?.statusChanges.subscribe(
             status => this.chipList.errorState = status === 'INVALID'
         );
     }
@@ -56,19 +52,20 @@ export class PostFormComponent implements OnInit {
         this._post = this.form.value;
     }
 
-    get names(): FormArray {
-        return <FormArray>this.form.get('names');
+    get tags(): FormArray {
+        return <FormArray>this.form.get('tags');
     }
 
-    add(event: MatChipInputEvent, form: FormGroup): void {
-        const input = event.input;
+    add(event: MatChipInputEvent): void {
+        const input = event.chipInput?.inputElement;
+
         const value = event.value;
 
-        // Add name
+        // Add tag
         if ((value || '').trim()) {
 
-            this.names.push(new FormControl(value.trim()));
-            console.log(this.names);
+            this.tags.push(new FormControl(value.trim()));
+            console.log(this.tags);
         }
 
         // Reset the input value
@@ -77,9 +74,9 @@ export class PostFormComponent implements OnInit {
         }
     }
 
-    remove(form: any, index: any) {
-        console.log(form);
-        form.get('names').removeAt(index);
+    remove(index: any) {
+
+        this.tags.removeAt(index);
     }
 
     save() { }

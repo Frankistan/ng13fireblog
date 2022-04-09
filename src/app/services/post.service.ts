@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { initializeApp } from '@angular/fire/app';
 import {
     collection,
     doc,
@@ -45,7 +44,7 @@ export interface Subject {
 export class PostService {
     // data
     data = {
-        names: ['name1', 'name2']
+        tags: ['tag1', 'tag2']
     }
 
     constructor(
@@ -57,6 +56,9 @@ export class PostService {
 
         const regex = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
+        /* 
+        ejemplo con DATOS de inicio
+
         const postForm = this._fb.group({
             id: [""],
             title: ["", [Validators.required]],
@@ -64,6 +66,16 @@ export class PostService {
             featured_image: ["", Validators.pattern(regex)],
 
             names: this._fb.array(this.data.names, this.validateArrayNotEmpty)
+        });
+        */
+
+        const postForm = this._fb.group({
+            id: [""],
+            title: ["", [Validators.required]],
+            content: ["", Validators.required],
+            featured_image: ["", Validators.pattern(regex)],
+
+            tags: this._fb.array([], this.validateArrayNotEmpty)
         });
 
         return postForm;

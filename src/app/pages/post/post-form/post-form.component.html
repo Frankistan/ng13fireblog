@@ -32,16 +32,16 @@
 
                 <!-- MATERIAL CHIPS -->
                 <mat-form-field class="example-chip-list">
-                    <mat-chip-list #chipList formArrayName="names">
-                        <mat-chip *ngFor="let name of names.controls; let i=index;" [selectable]="selectable"
-                            [removable]="removable" (removed)="remove(form, i)">
-                            {{name.value}}
+                    <mat-chip-list #chipList formArrayName="tags">
+                        <mat-chip *ngFor="let tag of tags.controls; let i=index;" [selectable]="selectable"
+                            [removable]="removable" (removed)="remove( i)">
+                            {{tag.value}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="Names" [matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur"
-                            (matChipInputTokenEnd)="add($event, form)">
+                        <input placeholder="Tags" [matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
                     </mat-chip-list>
-                    <mat-error>Atleast 1 name need to be added</mat-error>
+                    <mat-error>Atleast 1 tag need to be added</mat-error>
                 </mat-form-field>
             </mat-card-content>
             <div align="end">
