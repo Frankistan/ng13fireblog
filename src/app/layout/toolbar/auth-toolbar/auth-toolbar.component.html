@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <app-btn-menu [drawer]="drawer"></app-btn-menu>
+    <span>ANGULAR 13 MATERIAL</span>
+
+    <span fxFlex></span>
+    <app-btn-language-selector></app-btn-language-selector>
+    <ng-container>
+        <!-- <a routerLink="/auth/login" mat-button fxHide.xs (click)="drawer.close()">
+            {{ "navbar.login" | translate }}
+        </a> -->
+
+        <a routerLink="/auth/login" mat-button fxHide.xs>
+            {{ "navbar.login" | translate }}
+        </a>
+        <a routerLink="/auth/login" mat-icon-button fxHide.gt-xs matTooltip="{{ 'tooltips.login' | translate }}"
+            [matTooltipClass]="'tooltip'">
+            <mat-icon aria-label="iniciar sesion">fingerprint</mat-icon>
+        </a>
+    </ng-container>
+
+    <!-- <app-btn-profile></app-btn-profile> -->
+</mat-toolbar>

@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <app-btn-menu [drawer]="drawer"></app-btn-menu>
+    <span>ANGULAR 13 MATERIAL</span>
+
+    <span fxFlex></span>
+    <ng-container>
+        <app-btn-search></app-btn-search>
+        <app-btn-sort-by></app-btn-sort-by>
+        <!--<btn-filter [filterNavRef]="filterNavRef"></btn-filter> 
+        <mat-sidenav #filterNavRef
+                position="end"
+                [mode]="'over'"
+                [fixedInViewport]="true"
+                fixedTopGap="56">
+                <app-filters [filterNavRef]="filterNavRef"></app-filters>
+        </mat-sidenav> -->
+
+        <app-btn-view></app-btn-view>
+        <app-btn-more></app-btn-more>
+    </ng-container>
+</mat-toolbar>

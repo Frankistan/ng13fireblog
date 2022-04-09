@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
-    selector: 'app-nav-toolbar',
-    templateUrl: './nav-toolbar.component.html',
-    styleUrls: ['./nav-toolbar.component.scss']
+    selector: 'app-default-toolbar',
+    templateUrl: './default-toolbar.component.html',
+    styleUrls: ['./default-toolbar.component.scss']
 })
-export class NavToolbarComponent implements OnInit {
+export class DefaultToolbarComponent implements OnInit {
     @Input('drawer') public drawer!: MatDrawer;
 
     constructor() { }
@@ -15,5 +15,3 @@ export class NavToolbarComponent implements OnInit {
     }
 
 }
-
-

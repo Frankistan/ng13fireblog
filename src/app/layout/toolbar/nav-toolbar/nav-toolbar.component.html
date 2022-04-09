@@ -1,0 +1,46 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+
+    <app-btn-menu [drawer]="drawer"></app-btn-menu>
+    <span>ANGULAR 13 MATERIAL</span>
+
+    <span fxFlex></span>
+
+    <ng-container loadToolbarButtons></ng-container>
+
+    <ng-container *ngIf="(isAuthenticated$ | async); then: authenticated; else: guest"></ng-container>
+
+    <ng-template #authenticated>
+        <ng-container>
+            <app-btn-search></app-btn-search>
+            <app-btn-sort-by></app-btn-sort-by>
+            <!-- <btn-filter [filterNavRef]="filterNavRef">
+                <mat-sidenav #filterNavRef
+                        position="end"
+                        [mode]="'over'"
+                        [fixedInViewport]="true"
+                        fixedTopGap="56">
+                        <app-filters [filterNavRef]="filterNavRef"></app-filters>
+                </mat-sidenav> 
+            </btn-filter>  -->
+            <app-btn-view></app-btn-view>
+            <app-btn-more></app-btn-more>
+        </ng-container>
+    </ng-template>
+
+    <ng-template #guest>
+        <ng-container>
+            <a routerLink="/auth/login" mat-button fxHide.xs (click)="drawer.close()">
+                {{ "navbar.login" | translate }}
+            </a>
+            <a routerLink="/auth/login" mat-icon-button fxHide.gt-xs matTooltip="{{ 'tooltips.login' | translate }}"
+                [matTooltipClass]="'tooltip'">
+                <mat-icon aria-label="iniciar sesion">fingerprint</mat-icon>
+            </a>
+        </ng-container>
+        <!-- <app-btn-language-selector></app-btn-language-selector> -->
+    </ng-template>
+
+
+    <!-- <app-btn-profile></app-btn-profile> -->
+
+</mat-toolbar>

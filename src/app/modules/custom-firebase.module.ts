@@ -14,7 +14,7 @@ import { getStorage } from 'firebase/storage';
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
-        provideStorage(() => getStorage()),
+        provideStorage(() => getStorage())
     ],
 })
 export class CustomFirebaseModule { }
