@@ -17,7 +17,7 @@ import {
     docSnapshots,
     getFirestore,
 } from '@angular/fire/firestore';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from '@app/models/post';
 import { environment } from '@env/environment';
 import { getApp } from 'firebase/app';
@@ -59,7 +59,7 @@ export class PostService {
         /* 
         ejemplo con DATOS de inicio
 
-        const postForm = this._fb.group({
+        return this._fb.group({
             id: [""],
             title: ["", [Validators.required]],
             content: ["", Validators.required],
@@ -68,17 +68,14 @@ export class PostService {
             names: this._fb.array(this.data.names, this.validateArrayNotEmpty)
         });
         */
-
-        const postForm = this._fb.group({
-            id: [""],
-            title: ["", [Validators.required]],
-            content: ["", Validators.required],
-            featured_image: ["", Validators.pattern(regex)],
-
-            tags: this._fb.array([], this.validateArrayNotEmpty)
+        return new FormGroup({
+            id: new FormControl(""),
+            title: new FormControl("", [Validators.required]),
+            content: new FormControl("", Validators.required),
+            featured_image: new FormControl("", Validators.pattern(regex)),
+            tags: new FormArray([], this.validateArrayNotEmpty)
         });
 
-        return postForm;
     }
 
     validateArrayNotEmpty(c: AbstractControl
