@@ -2,6 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { AuthService } from '@app/services/auth.service';
+import { StoreService } from '@app/services/store.service';
 import { Observable, map, shareReplay } from 'rxjs';
 
 @Component({
@@ -11,7 +12,7 @@ import { Observable, map, shareReplay } from 'rxjs';
 })
 export class BtnMenuComponent {
 
-    @Input('drawer') public drawer!: MatDrawer;
+    drawer!: MatDrawer;
 
     isAuthenticated$!: Observable<boolean>;
 
@@ -23,10 +24,16 @@ export class BtnMenuComponent {
 
     constructor(
         private breakpointObserver: BreakpointObserver,
-        public auth: AuthService
+        public auth: AuthService,
+        private storeService: StoreService
     ) { }
 
     ngOnInit(): void {
         this.isAuthenticated$ = this.auth.isAuthenticated$;
+
+    }
+
+    onClick() {
+        this.storeService.toggle();
     }
 }
