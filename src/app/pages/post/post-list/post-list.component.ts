@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PostService } from '@app/services/post.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { PaginatorService } from '@app/services/paginator.service';
 import { Observable } from 'rxjs';
+import { IPost } from '@app/models/post';
 
 @Component({
     selector: 'app-post-list',
@@ -9,14 +11,40 @@ import { Observable } from 'rxjs';
 })
 export class PostListComponent implements OnInit {
 
+    @ViewChild(CdkVirtualScrollViewport, { static: false })
+    viewport!: CdkVirtualScrollViewport;
 
-    data$!: Observable<any>;
+    theEnd: boolean = false;
+    data$!: Observable<IPost[]>;
 
-    constructor(public postService: PostService) { }
+    constructor(
+        private page: PaginatorService
+    ) { }
 
     ngOnInit(): void {
-        this.data$ = this.postService.list()
+
+        this.page.init();
+        this.data$ = this.page.data;
+
     }
 
+    nextBatch() {
+        if (this.theEnd) {
+            return;
+        }
 
+        const end = this.viewport.getRenderedRange().end;
+        const total = this.viewport.getDataLength();
+
+        // console.log(`${end}, '>=', ${total}`);
+
+        if (end === total && end != 0) {
+            this.page.more();
+
+        }
+    }
+
+    trackByIdx(i: any) {
+        return i;
+    }
 }

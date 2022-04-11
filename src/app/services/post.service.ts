@@ -16,11 +16,12 @@ import {
     collectionChanges,
     docSnapshots,
     getFirestore,
+    addDoc,
+    orderBy,
+    limit,
 } from '@angular/fire/firestore';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from '@app/models/post';
-import { environment } from '@env/environment';
-import { getApp } from 'firebase/app';
 import { map, Observable } from 'rxjs';
 
 /*
@@ -48,7 +49,7 @@ export class PostService {
     }
 
     constructor(
-        private afs: Firestore,
+        private db: Firestore,
         private _fb: FormBuilder,
     ) { }
 
@@ -78,8 +79,7 @@ export class PostService {
 
     }
 
-    validateArrayNotEmpty(c: AbstractControl
-    ) {
+    validateArrayNotEmpty(c: AbstractControl) {
         if (c.value && c.value.length === 0) {
             return {
                 validateArrayNotEmpty: { valid: false }
@@ -91,13 +91,16 @@ export class PostService {
     list(): Observable<any> {
         return collectionChanges<IPost>(
             query<IPost>(
-                collection(this.afs, 'posts') as CollectionReference<IPost>,
+                collection(this.db, 'posts') as CollectionReference<IPost>,
                 // where('published', '==', true)
+                orderBy("created_at", "desc"),
+                limit(10)
             )).pipe(
                 map(changes => {
                     return changes.map(a => {
-                        const data = a.doc.data() as IPost;
-                        data.id = a.doc.id;
+
+                        let data = { ...a.doc.data() as IPost, id: a.doc.id };
+
                         return data ? data : null;
                     });
                 }),
@@ -106,11 +109,15 @@ export class PostService {
             )
     }
 
-    create() {
-        const id = doc(collection(this.afs, 'id')).id;
+    async create(data: IPost) {
+        // const id = doc(collection(this.db, 'posts')).id;
+
+        // let ref = doc(this.db, 'posts', id) as DocumentReference<IPost>;
+
+
 
         try {
-            docSnapshots<IPost>(doc(this.afs, `posts/${id}`));
+            await addDoc(collection(this.db, 'posts'), data);
         } catch (error) {
             // TODO: ERROR HANDLING
         }
@@ -119,16 +126,18 @@ export class PostService {
 
     read(id: string): Observable<IPost | null> {
 
-        let ref = doc(this.afs, 'posts', id) as DocumentReference<IPost>
+        let ref = doc(this.db, 'posts', id) as DocumentReference<IPost>;
 
         return docSnapshots<IPost>(ref).pipe(map(changes => {
-            const data = changes.data() as IPost;
-            console.log("data: ", data);
+
+            let data = { ...changes.data() as IPost, id: changes.id };
 
             return data ? data : null;
 
         }));
     }
+
+
 
     // update(id: string): Observable<IPost | null> {
 
@@ -137,4 +146,54 @@ export class PostService {
     // delete(id: string): Observable<IPost | null> {
 
     // }
+
+    /* PROMISES VERSION
+    addData(value: any) {
+        const ref = collection(this.db, 'users');
+        addDoc(ref, value)
+            .then(() => {
+                alert('Data Sent')
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
+    }
+
+    getData() {
+        const ref = collection(this.db, 'posts');
+        getDocs(ref)
+            .then((response) => {
+                let data = [...response.docs.map((item) => {
+                    return { ...item.data(), id: item.id }
+                })]
+            })
+    }
+
+    updateData(id: string) {
+        const ref = doc(this.db, 'posts', id);
+        updateDoc(ref, {
+            name: 'Nishant',
+            email: 'Nishant123@gmail.com'
+        })
+            .then(() => {
+                alert('Data updated');
+                this.getData()
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
+    }
+
+    deleteData(id: string) {
+        const ref = doc(this.db, 'posts', id);
+        deleteDoc(ref)
+            .then(() => {
+                alert('Data Deleted');
+                this.getData()
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
+    }
+    */
 }

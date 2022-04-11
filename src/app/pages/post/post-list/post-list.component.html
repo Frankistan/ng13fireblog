@@ -1,3 +1,10 @@
-<mat-list-item *ngFor="let post of (data$ | async); let i = index">
+<!-- <mat-list-item *ngFor="let post of (data$ | async); let i = index">
     <app-post-list-element [index]="i" [post]="post"></app-post-list-element>
 </mat-list-item>
+ -->
+<div class="example-viewport">
+    <cdk-virtual-scroll-viewport #viewport fxLayout="row" fxLayout.xs="column" fxFlexFill itemSize="100"
+        (scrolledIndexChange)="nextBatch()">
+        <div *cdkVirtualFor="let post of (data$ | async); let i = index" class="example-item">{{post.title}}</div>
+    </cdk-virtual-scroll-viewport>
+</div>

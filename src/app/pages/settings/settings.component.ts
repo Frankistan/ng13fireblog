@@ -34,7 +34,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.user$ = this._auth.loggedInUser$.pipe(tap(user => {
             this.form.patchValue(user.settings);
             this.user = user;
-
+            this.ischecked = user.settings.darkTheme;
             this._i18n.language = this.form.get('language')?.value;
         }));
     }

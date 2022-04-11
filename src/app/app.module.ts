@@ -9,12 +9,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MomentModule } from "ngx-moment";
 import { TranslateModule } from '@ngx-translate/core';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 // MIX
 import { environment } from '@env/environment';
 // SERVICES
 import { I18nService } from './services/i18n.service';
 import { CustomTitleService } from './services/custom-title.service';
 import { NotificationService } from './services/notification.service';
+import { SettingsService } from './services/settings.service';
+import { StoreService } from './services/store.service';
+import { PaginatorService } from './services/paginator.service';
 // DIRECTIVES
 import { NavBarButtonsDirective } from './directives/nav-bar-buttons.directive';
 // GUARDS
@@ -48,8 +52,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { TableComponent } from './pages/table/table.component';
-import { SettingsService } from './services/settings.service';
-import { StoreService } from './services/store.service';
+
+
 
 @NgModule({
     declarations: [
@@ -92,6 +96,7 @@ import { StoreService } from './services/store.service';
         MomentModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),
+        ScrollingModule,
     ],
     providers: [
         I18nService,
@@ -102,6 +107,7 @@ import { StoreService } from './services/store.service';
         SettingsService,
         // DiscardChangesGuard,
         StoreService,
+        PaginatorService,
         CustomTitleService,
         {
             provide: APP_INITIALIZER,

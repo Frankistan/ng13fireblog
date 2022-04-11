@@ -17,6 +17,7 @@ import { PostComponent } from './pages/post/post/post.component';
 import { DiscardChangesGuard } from './guards/discard-changes.guard';
 import { PostShowComponent } from './pages/post/post-show/post-show.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/posts']);
@@ -34,6 +35,13 @@ const routes: Routes = [
         // canActivate: [AuthGuard],
         ...canActivate(redirectUnauthorizedToLogin),
         data: { title: marker('title.settings') }
+    },
+    {
+        path: "profile",
+        component: ProfileComponent,
+        // canActivate: [AuthGuard],
+        ...canActivate(redirectUnauthorizedToLogin),
+        data: { title: marker('title.profile') }
     },
     {
         path: "auth",

@@ -12,5 +12,6 @@ export interface IPost {
     createdAt?: any;
     created_at?: number;
     updatedAt?: any;
+    updated_at?: number;
     tags?: Array<string>;
 }

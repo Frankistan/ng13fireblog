@@ -4,6 +4,7 @@ import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { Subject, Observable, map, shareReplay, takeUntil } from 'rxjs';
 import { IUser } from './models/user';
 import { AuthService } from './services/auth.service';
+import { PostService } from './services/post.service';
 import { StoreService } from './services/store.service';
 
 @Component({
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     constructor(
         private _bpo: BreakpointObserver,
         private auth: AuthService,
-        private storeService: StoreService
+        private storeService: StoreService,
+        private postService: PostService
     ) { }
 
     ngOnInit() {
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.user$ = this.auth.loggedInUser$;
 
         this.isAuthenticated$ = this.auth.isAuthenticated$;
+
 
 
 
