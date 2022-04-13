@@ -1,10 +1,22 @@
 import { Injectable } from '@angular/core';
 import {
-    collection, DocumentData, Firestore, getDocs, limit, orderBy, query,
-    QueryDocumentSnapshot, startAfter
+    collection,
+    DocumentData,
+    Firestore,
+    getDocs,
+    limit,
+    orderBy,
+    query,
+    QueryDocumentSnapshot,
+    startAfter
 } from '@angular/fire/firestore';
 import { IPost } from '@app/models/post';
 import { BehaviorSubject, Observable, scan } from 'rxjs';
+
+/* fuente:
+https://fireship.io/lessons/infinite-virtual-scroll-angular-cdk/
+https://stackoverflow.com/questions/50922417/how-to-paginate-or-infinite-scroll-by-number-of-items-in-firestore
+*/
 
 @Injectable({
     providedIn: 'root'

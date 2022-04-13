@@ -52,6 +52,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { TableComponent } from './pages/table/table.component';
+import { PostElementComponent } from './post-element/post-element.component';
 
 
 
@@ -84,6 +85,7 @@ import { TableComponent } from './pages/table/table.component';
         AuthToolbarComponent,
         DefaultToolbarComponent,
         BtnProfileComponent,
+        PostElementComponent,
     ],
     imports: [
         AppRoutingModule,

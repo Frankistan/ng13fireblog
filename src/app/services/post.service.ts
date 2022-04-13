@@ -25,6 +25,7 @@ import { IPost } from '@app/models/post';
 import { map, Observable } from 'rxjs';
 
 /*
+https://youtu.be/cUNmtRNc-8s
 https://youtu.be/CC0GuG2uVwQ
 https://firebase.google.com/docs/firestore/query-data/listen?hl=es-419
 https://www.codegrepper.com/code-examples/javascript/firestore+v9+addDoc+and+setDoc+collection%28%29+doc%28%29

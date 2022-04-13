@@ -1,10 +1,35 @@
-<!-- <mat-list-item *ngFor="let post of (data$ | async); let i = index">
-    <app-post-list-element [index]="i" [post]="post"></app-post-list-element>
-</mat-list-item>
- -->
-<div class="example-viewport">
+<!-- <div class="example-viewport">
     <cdk-virtual-scroll-viewport #viewport fxLayout="row" fxLayout.xs="column" fxFlexFill itemSize="100"
         (scrolledIndexChange)="nextBatch()">
         <div *cdkVirtualFor="let post of (data$ | async); let i = index" class="example-item">{{post.title}}</div>
+    </cdk-virtual-scroll-viewport>
+</div> -->
+
+<!-- <div class="example-viewport">
+
+    <cdk-virtual-scroll-viewport #viewport fxLayout="row" fxLayout.xs="column" fxFlexFill itemSize="100">
+        <mat-list>
+
+            <mat-list-item *cdkVirtualFor="let item of items; let i = index" class="example-item">
+                <app-post-element [post]="item"></app-post-element>
+            </mat-list-item>
+        </mat-list>
+    </cdk-virtual-scroll-viewport>
+</div> -->
+
+<div class="virtual-viewport-container">
+
+    <cdk-virtual-scroll-viewport #viewport fxLayout="row" fxLayout.xs="column" fxFlexFill itemSize="75">
+        <mat-list>
+            <mat-list-item *cdkVirtualFor="let item of items; let i = index" class="post-item mat-card">
+
+                <img matListAvatar [src]="item.img" alt="...">
+                <h3 matLine> {{item.title}} </h3>
+                <p matLine>
+                    <span> {{item.content}} </span>
+                    <span> -- {{item.author}} </span>
+                </p>
+            </mat-list-item>
+        </mat-list>
     </cdk-virtual-scroll-viewport>
 </div>

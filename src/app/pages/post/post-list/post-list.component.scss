@@ -1,10 +1,12 @@
-.example-viewport {
-    height: calc(100vh - 4.9rem);
-    width: calc(100vw - 290px);
-    border: 1px solid black;
+.virtual-viewport-container {
+    height: calc(100vh - 4rem);
+    width: calc(100vw - 20rem);
+    margin: 0 1rem;
 }
 
-.example-item {
-    height: 100px;
-    width: 500px;
+.post-item.mat-list-item {
+    width: calc(100vw - 22rem);
+    margin: 0.5rem 0;
+    display: flex;
+    height: 4.5rem !important;
 }
