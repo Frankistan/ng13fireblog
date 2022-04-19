@@ -34,7 +34,7 @@ import { BtnMenuComponent } from './layout/btn-menu/btn-menu.component';
 import { BtnMoreComponent } from './layout/btn-more/btn-more.component';
 import { BtnProfileComponent } from './layout/btn-profile/btn-profile.component';
 import { BtnSearchComponent } from './layout/btn-search/btn-search.component';
-import { BtnSortByComponent } from './layout/btn-sort-by/btn-sort-by.component';
+
 import { BtnViewComponent } from './layout/btn-view/btn-view.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultToolbarComponent } from './layout/toolbar/default-toolbar/default-toolbar.component';
@@ -52,7 +52,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { TableComponent } from './pages/table/table.component';
-import { PostElementComponent } from './post-element/post-element.component';
+
+import { ListComponent } from './test/list/list.component';
+import { ElementComponent } from './test/element/element.component';
 
 
 
@@ -64,7 +66,7 @@ import { PostElementComponent } from './post-element/post-element.component';
         BtnMenuComponent,
         BtnMoreComponent,
         BtnSearchComponent,
-        BtnSortByComponent,
+
         BtnViewComponent,
         DashboardComponent,
         LoginComponent,
@@ -85,7 +87,9 @@ import { PostElementComponent } from './post-element/post-element.component';
         AuthToolbarComponent,
         DefaultToolbarComponent,
         BtnProfileComponent,
-        PostElementComponent,
+
+        ListComponent,
+        ElementComponent,
     ],
     imports: [
         AppRoutingModule,

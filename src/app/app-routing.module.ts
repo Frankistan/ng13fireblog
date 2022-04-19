@@ -18,6 +18,7 @@ import { DiscardChangesGuard } from './guards/discard-changes.guard';
 import { PostShowComponent } from './pages/post/post-show/post-show.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ListComponent } from './test/list/list.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/posts']);
@@ -73,7 +74,7 @@ const routes: Routes = [
         children: [
             {
                 path: "",
-                component: PostListComponent,
+                component: ListComponent,
                 data: { title: marker('title.posts.list') }
             },
             {
@@ -102,6 +103,7 @@ const routes: Routes = [
         redirectTo: "auth/login",
         pathMatch: "full",
     },
+    // { path: '', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({
