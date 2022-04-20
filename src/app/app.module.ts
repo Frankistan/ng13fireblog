@@ -42,8 +42,6 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { NavToolbarComponent } from './layout/toolbar/nav-toolbar/nav-toolbar.component';
 import { PostComponent } from './pages/post/post/post.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
-import { PostListComponent } from './pages/post/post-list/post-list.component';
-import { PostListElementComponent } from './pages/post/post-list-element/post-list-element.component';
 import { PostShowComponent } from './pages/post/post-show/post-show.component';
 import { PostToolbarComponent } from './layout/toolbar/post-toolbar/post-toolbar.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -51,10 +49,9 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
-import { TableComponent } from './pages/table/table.component';
-
-import { ListComponent } from './test/list/list.component';
-import { ElementComponent } from './test/element/element.component';
+import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-virtual-list.component';
+import { PostVirtualElementComponent } from './pages/post/post-virtual-list/post-virtual-element/post-virtual-element.component';
+import { PostListComponent } from './pages/post/post-list/post-list.component';
 
 
 
@@ -66,7 +63,6 @@ import { ElementComponent } from './test/element/element.component';
         BtnMenuComponent,
         BtnMoreComponent,
         BtnSearchComponent,
-
         BtnViewComponent,
         DashboardComponent,
         LoginComponent,
@@ -74,22 +70,19 @@ import { ElementComponent } from './test/element/element.component';
         NavToolbarComponent,
         PostComponent,
         PostFormComponent,
-        PostListComponent,
-        PostListElementComponent,
         PostShowComponent,
         ProfileComponent,
         ResetPasswordComponent,
         SettingsComponent,
         SidenavContentComponent,
         SignupComponent,
-        TableComponent,
+        PostListComponent,
         PostToolbarComponent,
         AuthToolbarComponent,
         DefaultToolbarComponent,
         BtnProfileComponent,
-
-        ListComponent,
-        ElementComponent,
+        PostVirtualListComponent,
+        PostVirtualElementComponent,
     ],
     imports: [
         AppRoutingModule,

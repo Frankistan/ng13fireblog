@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { TableComponent } from './pages/table/table.component';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { PostListComponent } from './pages/post/post-list/post-list.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { LoginComponent } from './pages/auth/login/login.component';
@@ -11,14 +9,14 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
 import { AuthComponent } from './pages/auth/auth.component';
 // import { AuthGuard } from './guards/auth.guard';
 // import { LoggedInGuard } from './guards/logged-in.guard';
-
 import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
 import { PostComponent } from './pages/post/post/post.component';
 import { DiscardChangesGuard } from './guards/discard-changes.guard';
 import { PostShowComponent } from './pages/post/post-show/post-show.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { ListComponent } from './test/list/list.component';
+import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-virtual-list.component';
+import { PostListComponent } from './pages/post/post-list/post-list.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/posts']);
@@ -74,7 +72,8 @@ const routes: Routes = [
         children: [
             {
                 path: "",
-                component: ListComponent,
+                component: PostVirtualListComponent,
+                // component: PostListComponent,
                 data: { title: marker('title.posts.list') }
             },
             {

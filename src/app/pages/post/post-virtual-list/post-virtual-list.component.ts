@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss']
+    selector: 'app-post-virtual-list',
+    templateUrl: './post-virtual-list.component.html',
+    styleUrls: ['./post-virtual-list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class PostVirtualListComponent implements OnInit {
+
     items = Array.from({ length: 100 }).map((value, i) => {
         return {
             img: "https://www.smashbros.com/wiiu-3ds/sp/images/character/toon_link/main.png",
@@ -19,6 +20,5 @@ export class ListComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
 
 }

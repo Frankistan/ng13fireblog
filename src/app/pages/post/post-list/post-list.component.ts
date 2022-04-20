@@ -1,16 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { PaginatorService } from '@app/services/paginator.service';
-import { Observable } from 'rxjs';
-import { IPost } from '@app/models/post';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-post-list',
+    selector: 'app-list',
     templateUrl: './post-list.component.html',
     styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit {
-
     items = Array.from({ length: 100 }).map((value, i) => {
         return {
             img: "https://www.smashbros.com/wiiu-3ds/sp/images/character/toon_link/main.png",
@@ -20,40 +15,10 @@ export class PostListComponent implements OnInit {
         }
     });
 
-    @ViewChild(CdkVirtualScrollViewport, { static: false })
-    viewport!: CdkVirtualScrollViewport;
-
-    theEnd: boolean = false;
-    data$!: Observable<IPost[]>;
-
-    constructor(
-        private page: PaginatorService
-    ) { }
+    constructor() { }
 
     ngOnInit(): void {
-
-        this.page.init();
-        this.data$ = this.page.data;
-
     }
 
-    nextBatch() {
-        if (this.theEnd) {
-            return;
-        }
 
-        const end = this.viewport.getRenderedRange().end;
-        const total = this.viewport.getDataLength();
-
-        // console.log(`${end}, '>=', ${total}`);
-
-        if (end === total && end != 0) {
-            this.page.more();
-
-        }
-    }
-
-    trackByIdx(i: any) {
-        return i;
-    }
 }

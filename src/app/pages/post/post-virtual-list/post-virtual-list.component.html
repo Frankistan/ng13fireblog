@@ -1,0 +1,6 @@
+<div class="virtual-scroll-container">
+    <cdk-virtual-scroll-viewport #viewport itemSize="75" class="virtual-scroll-viewport">
+        <app-post-virtual-element *cdkVirtualFor="let item of items; let i = index" [item]="item">
+        </app-post-virtual-element>
+    </cdk-virtual-scroll-viewport>
+</div>
