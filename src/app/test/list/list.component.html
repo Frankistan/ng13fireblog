@@ -1,15 +1,14 @@
-<div fxLayout="column">
-    <ng-container *ngFor="let item of items; let i=index">
-        <mat-card fxLayout="row" fxFlex="100" class="mat-list" fxFlex.sm="85" fxFlex.gt-sm="75">
-            <mat-card-header class="header">
-                <div mat-card-avatar class="header-image"></div>
-                <mat-card-title class="title"> {{item.title}}
+<div fxLayout="column" fxLayoutAlign="center center" fxFlex="100" fxFlex.sm="85" fxFlex.gt-sm="75">
 
-                    <div class="flex-child long-and-truncated">
-                        <span>{{item.content}}</span>
-                    </div>
-                </mat-card-title>
-            </mat-card-header>
-        </mat-card>
-    </ng-container>
+    <mat-card *ngFor="let item of items; let i=index">
+        <mat-card-header>
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title class="title"> {{item.title}}
+                <div class="flex-child long-and-truncated">
+                    <span>{{item.content}}</span>
+                </div>
+            </mat-card-title>
+        </mat-card-header>
+    </mat-card>
+
 </div>
