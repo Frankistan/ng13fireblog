@@ -52,6 +52,7 @@ import { SignupComponent } from './pages/auth/signup/signup.component';
 import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-virtual-list.component';
 import { PostVirtualElementComponent } from './pages/post/post-virtual-list/post-virtual-element/post-virtual-element.component';
 import { PostListComponent } from './pages/post/post-list/post-list.component';
+import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
 
 
 
@@ -83,6 +84,7 @@ import { PostListComponent } from './pages/post/post-list/post-list.component';
         BtnProfileComponent,
         PostVirtualListComponent,
         PostVirtualElementComponent,
+        FabEditPostComponent,
     ],
     imports: [
         AppRoutingModule,

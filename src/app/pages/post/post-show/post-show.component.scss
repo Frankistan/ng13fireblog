@@ -1,0 +1,14 @@
+:host {
+    place-content: center !important;
+}
+
+.header-image {
+    background-image: url('https://www.smashbros.com/wiiu-3ds/sp/images/character/toon_link/main.png');
+    background-size: cover;
+    height: 3rem;
+    width: 3rem;
+}
+
+mat-card .mat-card-subtitle {
+    margin-top: -4px;
+}

@@ -1,1 +1,41 @@
-<p>post-show works!</p>
+<ng-container *ngIf="post$ | async; let post;">
+    <mat-card fxFlex="100" fxFlex.sm="65" fxFlex.gt-sm="65">
+        <mat-card-header fxLayout="row" fxLayoutAlign="start start">
+
+            <div mat-card-avatar class="header-image"></div>
+
+            <mat-card-title> {{ post.title }} </mat-card-title>
+
+            <mat-card-subtitle>
+                <time>
+                    {{ (post.created_at *1000)| amDateFormat: 'MMM YY ' }}
+                    ( {{ (post.created_at *1000) | amLocale: locale | amTimeAgo }} )
+                </time>
+            </mat-card-subtitle>
+
+            <span fxFlex></span>
+
+            <span>
+                <mat-icon class="material-icons-outlined"> bookmark_add </mat-icon>
+            </span>
+
+        </mat-card-header>
+
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+        <mat-card-content>
+            <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post.content)"> </span>
+        </mat-card-content>
+
+        <mat-divider [inset]="true"></mat-divider>
+
+        <mat-card-actions align="start">
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of post.tags">{{ tag }}</mat-chip>
+            </mat-chip-list>
+        </mat-card-actions>
+
+    </mat-card>
+
+    <fab-edit-post *ngIf="post$ | async; let post;" [id]="post.id"></fab-edit-post>
+</ng-container>
