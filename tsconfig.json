@@ -38,11 +38,12 @@
         "sourceMap": true,
         "strict": true,
         "target": "es2017",
+        "strictNullChecks": false,
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,
-        "strictTemplates": true
+        "strictTemplates": true,
     }
 }

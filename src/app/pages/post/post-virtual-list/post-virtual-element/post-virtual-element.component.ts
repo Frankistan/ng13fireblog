@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IPost } from '@app/models/post';
 
 @Component({
     selector: 'app-post-virtual-element',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./post-virtual-element.component.scss']
 })
 export class PostVirtualElementComponent implements OnInit {
-    @Input() item!: any;
+    @Input() item!: IPost;
 
     constructor() { }
 

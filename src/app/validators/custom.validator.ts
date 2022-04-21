@@ -20,8 +20,8 @@ export class CustomValidators {
             }
         };
     }
-    static mustMatch(controlName: string, matchingControlName: string) {
-        return (formGroup: FormGroup) => {
+    static mustMatch(controlName: string, matchingControlName: string): any {
+        return (formGroup: FormGroup): any => {
             const control = formGroup.controls[controlName];
             const matchingControl: any = formGroup.controls[matchingControlName];
 

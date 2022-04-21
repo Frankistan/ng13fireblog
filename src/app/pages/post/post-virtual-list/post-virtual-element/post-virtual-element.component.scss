@@ -2,38 +2,54 @@
     place-content: center !important;
 }
 
-.header-image {
-    background-image: url('https://www.smashbros.com/wiiu-3ds/sp/images/character/toon_link/main.png');
-    background-size: cover;
-}
 
-mat-card {
-    margin: 0.25rem 0.5rem;
-    width: auto;
-    display: flex;
-    align-self: center;
-}
 
-.mat-card-header .mat-card-title {
-    margin-bottom: 0;
-}
+a.post-anchor-element {
 
-.long-and-truncated {
-    margin-top: 0.5rem;
-    flex: 1;
-    min-width: 0;
+    &:link,
+    &:visited,
+    &:focus,
+    &:active,
+    &:hover {
+        text-decoration: none;
+        cursor: pointer;
+        color: inherit;
+        width: 100%;
+    }
 
-    /* Important for long words! */
-    span {
-        font-size: 14px;
-        font-weight: normal;
-        display: inline;
-        -webkit-line-clamp: 2;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        word-wrap: break-word;
-        /* Important for long words! */
+    mat-card {
+        margin: 0.25rem 0.5rem;
+        width: auto;
+        display: flex;
+        align-self: center;
+
+        .header-image {
+            background-image: url('https://www.smashbros.com/wiiu-3ds/sp/images/character/toon_link/main.png');
+            background-size: cover;
+        }
+
+        mat-card-subtitle {
+            margin: 0;
+
+        }
+
+        .long-and-truncated {
+
+            flex: 1;
+            min-width: 0;
+
+            /* Important for long words! */
+            span {
+
+                display: inline;
+                -webkit-line-clamp: 1; // el "1" signfica el número de líneas visibles antes del ellipsis
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                word-wrap: break-word;
+                /* Important for long words! */
+            }
+        }
     }
 }
