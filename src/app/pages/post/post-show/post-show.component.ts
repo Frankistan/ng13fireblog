@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { IPost } from '@app/models/post';
+import { IUser } from '@app/models/user';
+import { AuthService } from '@app/services/auth.service';
 import { I18nService } from '@app/services/i18n.service';
 import { PostService } from '@app/services/post.service';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+
 
 @Component({
     selector: 'app-post-show',
@@ -14,6 +17,8 @@ import { Observable } from 'rxjs';
 export class PostShowComponent implements OnInit {
     post$: Observable<IPost>;
     locale: string;
+    isBookMarked$: Observable<boolean>;
+    user$: Observable<any>;
 
 
     constructor(
@@ -21,12 +26,14 @@ export class PostShowComponent implements OnInit {
         private _activatedRoute: ActivatedRoute,
         public sanitizer: DomSanitizer,
         private _i18n: I18nService,
+        private _auth: AuthService,
     ) { }
 
     ngOnInit(): void {
         this.locale = this._i18n.language;
         const id = this._activatedRoute.snapshot.params['id'];
         this.post$ = this._postService.read(id);
+        this.isBookMarked$ = this._auth.loggedInUser$.pipe(map((user: IUser) => !!user.bookmarks.find(x => x == id)));
     }
 
 }

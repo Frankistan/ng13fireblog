@@ -30,6 +30,9 @@
             "@env/*": [
                 "environments/*"
             ],
+            "@models/*": [
+                "app/models/*"
+            ],
             "@store/*": [
                 "app/store/*"
             ]

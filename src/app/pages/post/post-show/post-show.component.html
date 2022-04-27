@@ -15,9 +15,15 @@
 
             <span fxFlex></span>
 
-            <span>
-                <mat-icon class="material-icons-outlined"> bookmark_add </mat-icon>
-            </span>
+            <ng-container *ngIf="isBookMarked$|async; then: bookMarked; else: notBookMarked"></ng-container>
+
+            <ng-template #bookMarked>
+                <mat-icon class="material-icons">bookmark</mat-icon>
+            </ng-template>
+
+            <ng-template #notBookMarked>
+                <mat-icon class="material-icons-outlined">bookmark_add</mat-icon>
+            </ng-template>
 
         </mat-card-header>
 
