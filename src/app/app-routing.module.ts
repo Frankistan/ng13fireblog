@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { PostFormComponent } from './pages/post/post-form/post-form.component';
-import { SignupComponent } from './pages/auth/signup/signup.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { PostComponent } from './pages/post/post/post.component';
+import { PostFormComponent } from './pages/post/post-form/post-form.component';
+import { PostShowComponent } from './pages/post/post-show/post-show.component';
+import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-virtual-list.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { SignupComponent } from './pages/auth/signup/signup.component';
 // import { AuthGuard } from './guards/auth.guard';
 // import { LoggedInGuard } from './guards/logged-in.guard';
-import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
-import { PostComponent } from './pages/post/post/post.component';
-import { DiscardChangesGuard } from './guards/discard-changes.guard';
-import { PostShowComponent } from './pages/post/post-show/post-show.component';
-import { SettingsComponent } from './pages/settings/settings.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-virtual-list.component';
-import { PostListComponent } from './pages/post/post-list/post-list.component';
+import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } from '@angular/fire/auth-guard';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/posts']);
@@ -25,27 +23,24 @@ const routes: Routes = [
     {
         path: "",
         component: DashboardComponent,
-        ...canActivate(redirectUnauthorizedToLogin),
-        data: { title: marker('title.home') }
+        canActivate: [AuthGuard],
+        data: { title: marker('title.home'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
         path: "settings",
         component: SettingsComponent,
-        // canActivate: [AuthGuard],
-        ...canActivate(redirectUnauthorizedToLogin),
-        data: { title: marker('title.settings') }
+        canActivate: [AuthGuard],
+        data: { title: marker('title.settings'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
         path: "profile",
         component: ProfileComponent,
-        // canActivate: [AuthGuard],
-        ...canActivate(redirectUnauthorizedToLogin),
-        data: { title: marker('title.profile') }
+        canActivate: [AuthGuard],
+        data: { title: marker('title.profile'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
         path: "auth",
         component: AuthComponent,
-        // canActivate: [LoggedInGuard],
         ...canActivate(redirectLoggedInToHome),
         children: [
             {
@@ -66,7 +61,6 @@ const routes: Routes = [
     },
     {
         path: "posts",
-        // canActivate: [AuthGuard],
         ...canActivate(redirectUnauthorizedToLogin),
         component: PostComponent,
         children: [

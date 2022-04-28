@@ -53,6 +53,8 @@ import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-vi
 import { PostVirtualElementComponent } from './pages/post/post-virtual-list/post-virtual-element/post-virtual-element.component';
 import { PostListComponent } from './pages/post/post-list/post-list.component';
 import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
+import { AuthGuardModule } from '@angular/fire/auth-guard';
+import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post.component';
 
 
 
@@ -85,6 +87,7 @@ import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.compo
         PostVirtualListComponent,
         PostVirtualElementComponent,
         FabEditPostComponent,
+        FabCreatePostComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -98,6 +101,7 @@ import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.compo
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         ScrollingModule,
+        AuthGuardModule
     ],
     providers: [
         I18nService,
@@ -110,6 +114,7 @@ import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.compo
         StoreService,
         PaginatorService,
         CustomTitleService,
+
         {
             provide: APP_INITIALIZER,
             useFactory: initFunction,

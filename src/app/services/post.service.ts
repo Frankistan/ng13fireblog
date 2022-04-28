@@ -75,7 +75,7 @@ export class PostService {
             title: new FormControl("", [Validators.required]),
             content: new FormControl("", Validators.required),
             featured_image: new FormControl("", Validators.pattern(regex)),
-            tags: new FormArray([], this.validateArrayNotEmpty)
+            tags: new FormArray([])
         });
 
     }
