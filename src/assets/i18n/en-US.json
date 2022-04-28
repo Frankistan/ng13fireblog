@@ -21,7 +21,7 @@
         "more": "More actions"
     },
     "toast": {
-        "apps":{
+        "apps": {
             "calling": "Codificación grabada correctamente",
             "ticket": "Incidencia grabada correctamente",
             "complaint": "Reclamación grabada correctamente"
@@ -39,7 +39,7 @@
         "signup": "Registered correctly, now loggining",
         "profile": "Your Profile has been updated",
         "firebase": {
-            "auth/account-exists-with-different-credential":"Account already exists with differents credentials",
+            "auth/account-exists-with-different-credential": "Account already exists with differents credentials",
             "auth/email-already-in-use": "The email address is already in use by another account.",
             "auth/invalid-credential": "Invalid credentials",
             "auth/operation-not-allowed": "Operation not allowed",
@@ -129,11 +129,11 @@
     "sidenav": {
         "appointments": "Appointments",
         "apps": "Apps",
-        "business" : "Business",
-        "corporate" : "Corporate",
+        "business": "Business",
+        "corporate": "Corporate",
         "documents": "Documents",
         "favorites": "Favorites",
-        "feeds" : "Feeds",
+        "feeds": "Feeds",
         "gallery": "Gallery",
         "help": "Help",
         "login": "Login",
@@ -187,12 +187,12 @@
             "tags": "Tags",
             "save": "Save"
         },
-        "filters":{
+        "filters": {
             "all-authors": "All",
-            "begin-date" : "Begin date",
+            "begin-date": "Begin date",
             "end-date": "End date",
             "save": "Done",
-            "reset":"Clear"
+            "reset": "Clear"
         },
         "end-search": "No more results that match",
         "end-list": "No more posts!",
@@ -207,7 +207,7 @@
     },
     "profile": {
         "employeeId": "EmployeeID",
-        "workPlace" : "Work Place",
+        "workPlace": "Work Place",
         "location": "Location",
         "location_not_available": "Location not available",
         "lastLogin": "Last login",

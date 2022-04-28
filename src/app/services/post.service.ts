@@ -19,10 +19,13 @@ import {
     addDoc,
     orderBy,
     limit,
+    updateDoc,
+    deleteDoc,
 } from '@angular/fire/firestore';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from '@app/models/post';
 import { map, Observable } from 'rxjs';
+import { NotificationService } from './notification.service';
 
 /*
 https://youtu.be/cUNmtRNc-8s
@@ -52,6 +55,7 @@ export class PostService {
     constructor(
         private db: Firestore,
         private _fb: FormBuilder,
+        private _ntf: NotificationService
     ) { }
 
     get form(): FormGroup {
@@ -124,7 +128,6 @@ export class PostService {
         }
     }
 
-
     read(id: string): Observable<IPost | null> {
 
         let ref = doc(this.db, 'posts', id) as DocumentReference<IPost>;
@@ -138,63 +141,31 @@ export class PostService {
         }));
     }
 
-
-
-    // update(id: string): Observable<IPost | null> {
-
-    // }
-
-    // delete(id: string): Observable<IPost | null> {
-
-    // }
-
-    /* PROMISES VERSION
-    addData(value: any) {
-        const ref = collection(this.db, 'users');
-        addDoc(ref, value)
-            .then(() => {
-                alert('Data Sent')
-            })
-            .catch((err) => {
-                alert(err.message)
-            })
-    }
-
-    getData() {
-        const ref = collection(this.db, 'posts');
-        getDocs(ref)
-            .then((response) => {
-                let data = [...response.docs.map((item) => {
-                    return { ...item.data(), id: item.id }
-                })]
-            })
-    }
-
-    updateData(id: string) {
+    async update(id: string, data: any) {
         const ref = doc(this.db, 'posts', id);
-        updateDoc(ref, {
-            name: 'Nishant',
-            email: 'Nishant123@gmail.com'
-        })
-            .then(() => {
-                alert('Data updated');
-                this.getData()
-            })
-            .catch((err) => {
-                alert(err.message)
-            })
+
+        try {
+            await updateDoc(ref, data);
+            this._ntf.open("toast.post.updated", "toast.close");
+        } catch (error) {
+            this.errorHandler(error);
+        }
+
     }
 
-    deleteData(id: string) {
+    async delete(id: string) {
         const ref = doc(this.db, 'posts', id);
-        deleteDoc(ref)
-            .then(() => {
-                alert('Data Deleted');
-                this.getData()
-            })
-            .catch((err) => {
-                alert(err.message)
-            })
+        try {
+            await deleteDoc(ref);
+            this._ntf.open("toast.post.deleted", "toast.close");
+        } catch (error) {
+            this.errorHandler(error);
+        }
     }
-    */
+
+    private errorHandler(error: any) {
+        console.log("error: ", error);
+        this._ntf.open("toast.firebase." + error.message, "toast.close");
+        // return observableEmpty();
+    }
 }

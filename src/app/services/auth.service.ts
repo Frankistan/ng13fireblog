@@ -189,5 +189,15 @@ export class AuthService {
         await setDoc(docRef, data);
     }
 
+    async bookmarks(bookmarks: Array<string>) {
+
+        const ref = doc(this.afs, 'users', this.auth.currentUser.uid);
+
+        try {
+            await updateDoc(ref, { bookmarks });
+        } catch (error) {
+            this.errorHandler(error);
+        }
+    }
 
 }

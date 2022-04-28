@@ -18,16 +18,16 @@
             <ng-container *ngIf="isBookMarked$|async; then: bookMarked; else: notBookMarked"></ng-container>
 
             <ng-template #bookMarked>
-                <mat-icon class="material-icons">bookmark</mat-icon>
+                <mat-icon class="material-icons" (click)="bookmark(false)">bookmark</mat-icon>
             </ng-template>
 
             <ng-template #notBookMarked>
-                <mat-icon class="material-icons-outlined">bookmark_add</mat-icon>
+                <mat-icon class="material-icons-outlined" (click)="bookmark(true)">bookmark_add</mat-icon>
             </ng-template>
 
         </mat-card-header>
 
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img mat-card-image src="{{post.featured_image}}" alt="featured image">
 
         <mat-card-content>
             <span [innerHTML]="sanitizer.bypassSecurityTrustHtml(post.content)"> </span>

@@ -55,6 +55,7 @@ import { PostListComponent } from './pages/post/post-list/post-list.component';
 import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
 import { AuthGuardModule } from '@angular/fire/auth-guard';
 import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post.component';
+import { ProfileService } from './services/profile.service';
 
 
 
@@ -114,7 +115,7 @@ import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post
         StoreService,
         PaginatorService,
         CustomTitleService,
-
+        ProfileService,
         {
             provide: APP_INITIALIZER,
             useFactory: initFunction,

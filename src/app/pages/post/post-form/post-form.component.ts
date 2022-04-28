@@ -103,7 +103,15 @@ export class PostFormComponent implements OnInit, OnDestroy {
         this.tags.removeAt(index);
     }
 
-    save() { }
+
+    save() {
+
+        if (!this.isAddMode) {
+            this.postService.update(this.id, this.form.value);
+        } else {
+            this.postService.create(this.form.value);
+        }
+    }
 
     ngOnDestroy(): void {
         this.destroy.next();
