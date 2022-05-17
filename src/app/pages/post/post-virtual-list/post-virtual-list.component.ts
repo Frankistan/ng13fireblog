@@ -4,6 +4,10 @@ import { PaginatorService } from '@app/services/paginator.service';
 import { Observable } from 'rxjs';
 import { IPost } from '@app/models/post';
 
+/*
+https://stackblitz.com/edit/angular-cdk-demo-virtual-scroll?file=app%2Fvirtual-scroll%2Fvirtual-scroll.component.ts
+*/
+
 @Component({
     selector: 'app-post-virtual-list',
     templateUrl: './post-virtual-list.component.html',

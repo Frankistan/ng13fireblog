@@ -28,10 +28,12 @@ import { map, Observable } from 'rxjs';
 import { NotificationService } from './notification.service';
 
 /*
+https://dev.to/jdgamble555/angular-12-with-firebase-9-49a0
 https://youtu.be/cUNmtRNc-8s
 https://youtu.be/CC0GuG2uVwQ
 https://firebase.google.com/docs/firestore/query-data/listen?hl=es-419
 https://www.codegrepper.com/code-examples/javascript/firestore+v9+addDoc+and+setDoc+collection%28%29+doc%28%29
+
 
 VER CÓMO RECUPERA/OBTIENE LOS TWEETS DEL USUARIO LOGEADO ASI COMO LOS EVENTOS ADD, UPDATE..ETC
 https://youtu.be/DKe3oAt2_KE?t=1737
@@ -115,16 +117,12 @@ export class PostService {
     }
 
     async create(data: IPost) {
-        // const id = doc(collection(this.db, 'posts')).id;
-
-        // let ref = doc(this.db, 'posts', id) as DocumentReference<IPost>;
-
-
 
         try {
             await addDoc(collection(this.db, 'posts'), data);
+            this._ntf.open("toast.post.created", "toast.close");
         } catch (error) {
-            // TODO: ERROR HANDLING
+            this.errorHandler(error);
         }
     }
 

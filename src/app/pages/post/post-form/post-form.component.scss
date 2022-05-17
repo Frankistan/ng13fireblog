@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-mat-form-field {
+mat-form-field:not(.stretch) {
     width: 100%;
     margin: 0.25rem 0;
 }

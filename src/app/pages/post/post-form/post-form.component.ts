@@ -12,6 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
 https://www.angularfix.com/2022/01/angular-2-material-mat-chip-list.html
 https://stackblitz.com/edit/angular-4d5vfj-gywxjz?file=app%2Fchip-list-validation-example.ts
 https://www.lindseybroos.be/2020/06/angular-material-chiplist-with-autocomplete-and-validation/
+https://jasonwatmore.com/post/2020/09/02/angular-combined-add-edit-create-update-form-example
 */
 
 @Component({
@@ -39,8 +40,6 @@ export class PostFormComponent implements OnInit, OnDestroy {
     selectable = true;
     removable = true;
     addOnBlur = true;
-
-
 
     constructor(
         public postService: PostService,
@@ -89,7 +88,7 @@ export class PostFormComponent implements OnInit, OnDestroy {
         if ((value || '').trim()) {
 
             this.tags.push(new FormControl(value.trim()));
-            console.log(this.tags);
+
         }
 
         // Reset the input value
@@ -103,13 +102,13 @@ export class PostFormComponent implements OnInit, OnDestroy {
         this.tags.removeAt(index);
     }
 
-
     save() {
 
-        if (!this.isAddMode) {
-            this.postService.update(this.id, this.form.value);
-        } else {
+        if (this.isAddMode) {
             this.postService.create(this.form.value);
+        } else {
+
+            this.postService.update(this.id, this.form.value);
         }
     }
 

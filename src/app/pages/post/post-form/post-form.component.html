@@ -1,22 +1,30 @@
 <div fxLayoutAlign="center">
     <mat-card fxLayout="column" fxFlex="100" fxFlex.sm="85" fxFlex.gt-sm="75">
-
+        <app-file-upload></app-file-upload>
         <form autocomplete="off" novalidate [formGroup]="form" (submit)="save()">
-            <mat-form-field>
-                <input #imageURL matInput [placeholder]="'post.input.featured_image' | translate" name="featured_image"
-                    formControlName="featured_image">
-                <mat-error *ngIf="form.get('featured_image')?.hasError('url')">
-                    {{ 'validation.url' | translate }}
-                </mat-error>
-            </mat-form-field>
-            <figure *ngIf="imageURL.value">
+            <!-- <span fxLayoutAlign="space-between center">
+                <mat-form-field class="stretch" fxFlex.gt-md="75" fxFlex.lt-md="60" fxflex.lt="65">
+                    <input #imageURL matInput [placeholder]="'post.input.featured_image' | translate"
+                        name="featured_image" formControlName="featured_image">
+                    <mat-error *ngIf="form.get('featured_image')?.hasError('url')">
+                        {{ 'validation.url' | translate }}
+                    </mat-error>
+
+                </mat-form-field>
+
+                <button type="button" color="primary" mat-raised-button ç>
+                    {{ 'upload.browse' | translate }}
+                </button>
+            </span> -->
+
+            <!-- <figure *ngIf="imageURL.value">
                 <img [src]="imageURL.value">
                 <figcaption fxLayoutAlign="center center">
                     <button id="myDelButton" mat-fab color="primary" aria-label="delete post featured image">
                         <mat-icon>close</mat-icon>
                     </button>
                 </figcaption>
-            </figure>
+            </figure> -->
             <mat-card-content>
                 <mat-form-field>
                     <input autofocus matInput [placeholder]="'post.input.title' | translate" name="title"
@@ -31,7 +39,7 @@
                 </div>
 
                 <!-- MATERIAL CHIPS -->
-                <mat-form-field class="example-chip-list">
+                <mat-form-field>
                     <mat-chip-list #chipList formArrayName="tags">
                         <mat-chip *ngFor="let tag of tags.controls; let i=index;" [selectable]="selectable"
                             [removable]="removable" (removed)="remove( i)">

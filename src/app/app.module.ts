@@ -10,15 +10,17 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MomentModule } from "ngx-moment";
 import { TranslateModule } from '@ngx-translate/core';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 // MIX
 import { environment } from '@env/environment';
 // SERVICES
-import { I18nService } from './services/i18n.service';
 import { CustomTitleService } from './services/custom-title.service';
+import { I18nService } from './services/i18n.service';
 import { NotificationService } from './services/notification.service';
+import { PaginatorService } from './services/paginator.service';
+import { ProfileService } from './services/profile.service';
 import { SettingsService } from './services/settings.service';
 import { StoreService } from './services/store.service';
-import { PaginatorService } from './services/paginator.service';
 // DIRECTIVES
 import { NavBarButtonsDirective } from './directives/nav-bar-buttons.directive';
 // GUARDS
@@ -28,36 +30,42 @@ import { DiscardChangesGuard } from './guards/discard-changes.guard';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { AuthGuardModule } from '@angular/fire/auth-guard';
 import { AuthToolbarComponent } from './layout/toolbar/auth-toolbar/auth-toolbar.component';
 import { BtnLanguageSelectorComponent } from './layout/btn-language-selector/btn-language-selector.component';
 import { BtnMenuComponent } from './layout/btn-menu/btn-menu.component';
 import { BtnMoreComponent } from './layout/btn-more/btn-more.component';
 import { BtnProfileComponent } from './layout/btn-profile/btn-profile.component';
 import { BtnSearchComponent } from './layout/btn-search/btn-search.component';
-
 import { BtnViewComponent } from './layout/btn-view/btn-view.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultToolbarComponent } from './layout/toolbar/default-toolbar/default-toolbar.component';
+import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post.component';
+import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
+import { FileUploadComponent } from './layout/file-upload/file-upload.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { NavToolbarComponent } from './layout/toolbar/nav-toolbar/nav-toolbar.component';
 import { PostComponent } from './pages/post/post/post.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
+import { PostListComponent } from './pages/post/post-list/post-list.component';
 import { PostShowComponent } from './pages/post/post-show/post-show.component';
 import { PostToolbarComponent } from './layout/toolbar/post-toolbar/post-toolbar.component';
+import { PostVirtualElementComponent } from './pages/post/post-virtual-list/post-virtual-element/post-virtual-element.component';
+import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-virtual-list.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
-import { PostVirtualListComponent } from './pages/post/post-virtual-list/post-virtual-list.component';
-import { PostVirtualElementComponent } from './pages/post/post-virtual-list/post-virtual-element/post-virtual-element.component';
-import { PostListComponent } from './pages/post/post-list/post-list.component';
-import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
-import { AuthGuardModule } from '@angular/fire/auth-guard';
-import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post.component';
-import { ProfileService } from './services/profile.service';
 
+/*
+https://openbase.com/
+https://fonts.google.com/
+https://material.angular.io/
+https://firebase.google.com/
+https://tburleson-layouts-demos.firebaseapp.com/
 
+*/
 
 @NgModule({
     declarations: [
@@ -89,6 +97,7 @@ import { ProfileService } from './services/profile.service';
         PostVirtualElementComponent,
         FabEditPostComponent,
         FabCreatePostComponent,
+        FileUploadComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -102,7 +111,8 @@ import { ProfileService } from './services/profile.service';
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         ScrollingModule,
-        AuthGuardModule
+        AuthGuardModule,
+        MaterialFileInputModule,
     ],
     providers: [
         I18nService,

@@ -1,0 +1,28 @@
+<form autocomplete="off" novalidate [formGroup]="form">
+    <span fxLayoutAlign="space-between center">
+        <mat-form-field>
+            <ngx-mat-file-input #fileInput formControlName="image" [accept]="'.jpg,.gif,.png'"
+                [placeholder]="'post.input.featured_image' | translate">
+            </ngx-mat-file-input>
+            <mat-icon matSuffix *ngIf="fileInput.empty">folder</mat-icon>
+            <button mat-icon-button matSuffix *ngIf="!fileInput.empty">
+                <mat-icon>clear</mat-icon>
+            </button>
+
+            <mat-error *ngIf="form.get('image')?.hasError('extension')">
+                {{ 'validation.file-not-supported' | translate }}
+            </mat-error>
+
+        </mat-form-field>
+        <button mat-mini-fab color="primary" *ngIf="!fileInput.empty" (click)="startUpload()">
+            <mat-icon>upgrade</mat-icon>
+        </button>
+    </span>
+    <mat-progress-bar color="accent" *ngIf="(uploadPercent | async)?.progress" mode="determinate"
+        [value]="(uploadPercent | async)?.progress" min="0" max="100">
+    </mat-progress-bar>
+    <div *ngIf="(uploadPercent | async)?.progress as pct">
+        <span [translate]="'upload.progress'" [translateParams]="{progress: pct | number:'.1-2' }"></span>
+    </div>
+
+</form>
