@@ -57,6 +57,10 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
+import { FeaturedImageComponent } from './layout/featured-image/featured-image.component';
+import { FileUploadDialogComponent } from './layout/dialogs/file-upload-dialog/file-upload-dialog.component';
+import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
+
 
 /*
 https://openbase.com/
@@ -98,6 +102,10 @@ https://tburleson-layouts-demos.firebaseapp.com/
         FabEditPostComponent,
         FabCreatePostComponent,
         FileUploadComponent,
+        FeaturedImageComponent,
+        FileUploadDialogComponent,
+        TestUploadDialogComponent,
+
     ],
     imports: [
         AppRoutingModule,
@@ -114,6 +122,7 @@ https://tburleson-layouts-demos.firebaseapp.com/
         AuthGuardModule,
         MaterialFileInputModule,
     ],
+    entryComponents: [FileUploadDialogComponent],
     providers: [
         I18nService,
         CustomTitleService,

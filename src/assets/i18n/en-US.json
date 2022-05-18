@@ -203,7 +203,11 @@
         "button": "Upload",
         "drag_and_drop": "Drag and Drop your image file here",
         "label": "select an image",
-        "progress": "Progress: {{progress}} % Complete"
+        "progress": "Progress: {{progress}} %",
+        "dialog": {
+            "camera": "Camera",
+            "pc": "Computer"
+        }
     },
     "profile": {
         "employeeId": "EmployeeID",

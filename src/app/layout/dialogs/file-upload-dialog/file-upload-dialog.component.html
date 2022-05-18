@@ -1,0 +1,34 @@
+<mat-dialog-content>
+    <mat-tab-group animationDuration="0ms" mat-stretch-tabs>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <span fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">laptop</mat-icon>
+                    <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.pc' | translate }}</span>
+                </span>
+            </ng-template>
+            Content 1
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <span fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">language</mat-icon>
+                    <span fxFlex fxFlexOrder="2">URL</span>
+                </span>
+            </ng-template>
+            Content 2
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <span fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">linked_camera</mat-icon>
+                    <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.camera' | translate }}</span>
+                </span>
+            </ng-template>
+            Content 3
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

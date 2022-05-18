@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ImageValidator } from '@app/validators/image.validator';
+import { FileInput } from 'ngx-material-file-input';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import {
     Storage,
     ref,
-    deleteObject,
-    uploadBytes,
-    uploadString,
     uploadBytesResumable,
     percentage,
     getDownloadURL,
     UploadTaskSnapshot,
 } from '@angular/fire/storage';
-import { FileInput } from 'ngx-material-file-input';
+
 
 /*
 https://dev.to/jdgamble555/angular-12-with-firebase-9-49a0
@@ -28,7 +26,7 @@ https://stackblitz.com/edit/demo-ngx-mat-file-input
     templateUrl: './file-upload.component.html',
     styleUrls: ['./file-upload.component.scss']
 })
-export class FileUploadComponent implements OnInit {
+export class FileUploadComponent implements OnInit, OnDestroy {
     form!: FormGroup;
     file!: FileInput;
     url: string = "";
@@ -83,6 +81,10 @@ export class FileUploadComponent implements OnInit {
         }
         return url;
 
+    }
+
+    ngOnDestroy(): void {
+        this.destroy.next();
     }
 
 }

@@ -1,0 +1,35 @@
+<app-default-toolbar></app-default-toolbar>
+
+<mat-card class="content">
+
+    <mat-tab-group animationDuration="0ms" mat-stretch-tabs id="tab-group">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <span fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">laptop</mat-icon>
+                    <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.pc' | translate }}</span>
+                </span>
+            </ng-template>
+            <div #dropzone class="dropzone">Content 1</div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <span fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">language</mat-icon>
+                    <span fxFlex fxFlexOrder="2">URL</span>
+                </span>
+            </ng-template>
+            Content 2
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <span fxLayout="column" fxLayoutAlign="space-between center">
+                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">linked_camera</mat-icon>
+                    <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.camera' | translate }}</span>
+                </span>
+            </ng-template>
+            Content 3
+        </mat-tab>
+    </mat-tab-group>
+
+</mat-card>

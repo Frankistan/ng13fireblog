@@ -21,7 +21,7 @@
         "more": "Más acciones"
     },
     "toast": {
-        "apps":{
+        "apps": {
             "calling": "Codificación grabada correctamente",
             "ticket": "Incidencia grabada correctamente",
             "complaint": "Reclamación grabada correctamente"
@@ -129,11 +129,11 @@
     "sidenav": {
         "appointments": "Citas pendientes",
         "apps": "Aplicaciones",
-        "corporate" : "Corporativo",
-        "business" : "Negocio",
+        "corporate": "Corporativo",
+        "business": "Negocio",
         "documents": "Documentos",
         "favorites": "Favoritas",
-        "feeds" : "Blogs",
+        "feeds": "Blogs",
         "help": "Ayuda",
         "home": "Inicio",
         "login": "Inicia Sesión",
@@ -187,12 +187,12 @@
             "tags": "Etiquetas",
             "save": "Guardar"
         },
-        "filters":{
+        "filters": {
             "all-authors": "Todos",
-            "begin-date" : "Fecha de inicio",
+            "begin-date": "Fecha de inicio",
             "end-date": "Fecha de fin",
             "save": "Hecho",
-            "reset":"Limpiar"
+            "reset": "Limpiar"
         },
         "end-search": "Búsqueda sin resultados",
         "end-list": "No hay más posts!",
@@ -203,11 +203,15 @@
         "button": "Subir",
         "drag_and_drop": "Arrastra y suelta aquí una imagen",
         "label": "selecciona o suelta imagen aquí",
-        "progress": "Progreso: {{progress}} % Completado"
+        "progress": "Progreso: {{progress}} %",
+        "dialog": {
+            "camera": "Cámara",
+            "pc": "Ordenador"
+        }
     },
     "profile": {
         "employeeId": "ID Empleado",
-        "workPlace" : "Centro de Trabajo",
+        "workPlace": "Centro de Trabajo",
         "location": "Ubicación",
         "location_not_available": "Ubicación no disponible",
         "lastLogin": "Hora de última conexión",

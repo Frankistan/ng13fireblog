@@ -15,6 +15,7 @@ import { SignupComponent } from './pages/auth/signup/signup.component';
 // import { LoggedInGuard } from './guards/logged-in.guard';
 import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } from '@angular/fire/auth-guard';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/posts']);
@@ -37,6 +38,12 @@ const routes: Routes = [
         component: ProfileComponent,
         canActivate: [AuthGuard],
         data: { title: marker('title.profile'), authGuardPipe: redirectUnauthorizedToLogin }
+    },
+    {
+        path: "polls",
+        component: TestUploadDialogComponent,
+        canActivate: [AuthGuard],
+        data: { title: marker('title.polls'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
         path: "auth",
