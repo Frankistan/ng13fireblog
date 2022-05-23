@@ -4,13 +4,17 @@
 
     <mat-tab-group animationDuration="0ms" mat-stretch-tabs id="tab-group">
         <mat-tab>
-            <ng-template mat-tab-label>
+            <ng-template mat-tab-label mat-tab-label-active>
                 <span fxLayout="column" fxLayoutAlign="space-between center">
                     <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">laptop</mat-icon>
                     <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.pc' | translate }}</span>
                 </span>
             </ng-template>
-            <div #dropzone class="dropzone">Content 1</div>
+            <form autocomplete="off" novalidate [formGroup]="form">
+                <div #dropzone dropzone class="dropzone" (hovered)="toggleHover($event)" (dropped)="startUpload()">
+                    Content 1
+                </div>
+            </form>
         </mat-tab>
         <mat-tab>
             <ng-template mat-tab-label>

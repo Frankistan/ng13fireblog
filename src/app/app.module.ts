@@ -60,6 +60,7 @@ import { SignupComponent } from './pages/auth/signup/signup.component';
 import { FeaturedImageComponent } from './layout/featured-image/featured-image.component';
 import { FileUploadDialogComponent } from './layout/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
+import { DropzoneDirective } from './directives/dropzone.directive';
 
 
 /*
@@ -68,6 +69,7 @@ https://fonts.google.com/
 https://material.angular.io/
 https://firebase.google.com/
 https://tburleson-layouts-demos.firebaseapp.com/
+https://css2sass.herokuapp.com/
 
 */
 
@@ -76,6 +78,7 @@ https://tburleson-layouts-demos.firebaseapp.com/
         AppComponent,
         AuthComponent,
         BtnLanguageSelectorComponent,
+        DropzoneDirective,
         BtnMenuComponent,
         BtnMoreComponent,
         BtnSearchComponent,
@@ -105,6 +108,7 @@ https://tburleson-layouts-demos.firebaseapp.com/
         FeaturedImageComponent,
         FileUploadDialogComponent,
         TestUploadDialogComponent,
+        DropzoneDirective,
 
     ],
     imports: [
