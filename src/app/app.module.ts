@@ -61,6 +61,7 @@ import { FeaturedImageComponent } from './layout/featured-image/featured-image.c
 import { FileUploadDialogComponent } from './layout/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
 import { DropzoneDirective } from './directives/dropzone.directive';
+import { FileUploadService } from './services/file-upload.service';
 
 
 /*
@@ -134,6 +135,7 @@ https://css2sass.herokuapp.com/
         AuthGuard,
         LoggedInGuard,
         SettingsService,
+        FileUploadService,
         // DiscardChangesGuard,
         StoreService,
         PaginatorService,

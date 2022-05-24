@@ -11,6 +11,7 @@ import {
     getDownloadURL,
     UploadTaskSnapshot,
 } from '@angular/fire/storage';
+import { FileUploadService } from '@app/services/file-upload.service';
 
 
 /*
@@ -33,12 +34,7 @@ export class FileUploadComponent implements OnInit, OnDestroy {
 
     private destroy = new Subject<void>();
 
-    uploadPercent: Observable<{
-        progress: number;
-        snapshot: UploadTaskSnapshot;
-    }>;
-
-    constructor(private storage: Storage) { }
+    constructor(public fus: FileUploadService) { }
 
     ngOnInit(): void {
         this.form = new FormGroup({
@@ -55,31 +51,8 @@ export class FileUploadComponent implements OnInit, OnDestroy {
 
     async startUpload() {
 
-        const url = await this.upload("uploads", this.file.files[0].name, this.file.files[0]);
+        const url = await this.fus.upload(this.file.files[0].name, this.file.files[0]);
         console.log("URL:", url);
-
-    }
-
-    async upload(folder: string, name: string, file: File | null): Promise<string> {
-
-        const ext = file!.name.split('.').pop();
-        const path = `${folder}/${name}.${ext}`;
-        let url = "";
-
-        if (file) {
-            try {
-                const storageRef = ref(this.storage, path);
-                const task = uploadBytesResumable(storageRef, file);
-                this.uploadPercent = percentage(task);
-                await task;
-                url = await getDownloadURL(storageRef);
-            } catch (error: any) {
-                console.error(error);
-            }
-        } else {
-            // handle invalid file
-        }
-        return url;
 
     }
 

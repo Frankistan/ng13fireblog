@@ -10,11 +10,11 @@
                     <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.pc' | translate }}</span>
                 </span>
             </ng-template>
-            <form autocomplete="off" novalidate [formGroup]="form">
-                <div #dropzone dropzone class="dropzone" (hovered)="toggleHover($event)" (dropped)="startUpload()">
-                    Content 1
-                </div>
-            </form>
+
+            <div #dropzone dropzone class="dropzone" (hovered)="toggleHover($event)" (dropped)="startUpload($event)">
+                Content 1
+            </div>
+
         </mat-tab>
         <mat-tab>
             <ng-template mat-tab-label>

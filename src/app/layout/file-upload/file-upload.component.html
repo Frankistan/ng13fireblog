@@ -18,10 +18,10 @@
             <mat-icon>upgrade</mat-icon>
         </button>
     </span>
-    <mat-progress-bar color="accent" *ngIf="(uploadPercent | async)?.progress" mode="determinate"
-        [value]="(uploadPercent | async)?.progress" min="0" max="100">
+    <mat-progress-bar color="accent" *ngIf="(fus.uploadPercent | async)?.progress" mode="determinate"
+        [value]="(fus.uploadPercent | async)?.progress" min="0" max="100">
     </mat-progress-bar>
-    <div *ngIf="(uploadPercent | async)?.progress as pct">
+    <div *ngIf="(fus.uploadPercent | async)?.progress as pct">
         <span [translate]="'upload.progress'" [translateParams]="{progress: pct | number:'.1-2' }"></span>
     </div>
 
