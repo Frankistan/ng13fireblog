@@ -7,14 +7,15 @@ import { CustomMaterialModule } from './modules/custom-material.module';
 import { CustomTinymceModule } from './modules/custom-tinymce.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MomentModule } from "ngx-moment";
-import { TranslateModule } from '@ngx-translate/core';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MomentModule } from "ngx-moment";
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TranslateModule } from '@ngx-translate/core';
 // MIX
 import { environment } from '@env/environment';
 // SERVICES
 import { CustomTitleService } from './services/custom-title.service';
+import { FileUploadService } from './services/file-upload.service';
 import { I18nService } from './services/i18n.service';
 import { NotificationService } from './services/notification.service';
 import { PaginatorService } from './services/paginator.service';
@@ -23,6 +24,7 @@ import { SettingsService } from './services/settings.service';
 import { StoreService } from './services/store.service';
 // DIRECTIVES
 import { NavBarButtonsDirective } from './directives/nav-bar-buttons.directive';
+import { DropzoneDirective } from './directives/dropzone.directive';
 // GUARDS
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedInGuard } from './guards/logged-in.guard';
@@ -42,7 +44,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultToolbarComponent } from './layout/toolbar/default-toolbar/default-toolbar.component';
 import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post.component';
 import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
+import { FeaturedImageComponent } from './layout/featured-image/featured-image.component';
 import { FileUploadComponent } from './layout/file-upload/file-upload.component';
+import { FileUploadDialogComponent } from './layout/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { NavToolbarComponent } from './layout/toolbar/nav-toolbar/nav-toolbar.component';
 import { PostComponent } from './pages/post/post/post.component';
@@ -57,18 +61,15 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
-import { FeaturedImageComponent } from './layout/featured-image/featured-image.component';
-import { FileUploadDialogComponent } from './layout/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
-import { DropzoneDirective } from './directives/dropzone.directive';
-import { FileUploadService } from './services/file-upload.service';
 
 
 /*
+https://github.com/Frankistan/ng13fireblog
+https://console.firebase.google.com/
 https://openbase.com/
 https://fonts.google.com/
 https://material.angular.io/
-https://firebase.google.com/
 https://tburleson-layouts-demos.firebaseapp.com/
 https://css2sass.herokuapp.com/
 
@@ -78,69 +79,67 @@ https://css2sass.herokuapp.com/
     declarations: [
         AppComponent,
         AuthComponent,
+        AuthToolbarComponent,
         BtnLanguageSelectorComponent,
-        DropzoneDirective,
         BtnMenuComponent,
         BtnMoreComponent,
+        BtnProfileComponent,
         BtnSearchComponent,
         BtnViewComponent,
         DashboardComponent,
+        DefaultToolbarComponent,
+        DropzoneDirective,
+        FabCreatePostComponent,
+        FabEditPostComponent,
+        FeaturedImageComponent,
+        FileUploadComponent,
+        FileUploadDialogComponent,
         LoginComponent,
         NavBarButtonsDirective,
         NavToolbarComponent,
         PostComponent,
         PostFormComponent,
+        PostListComponent,
         PostShowComponent,
+        PostToolbarComponent,
+        PostVirtualElementComponent,
+        PostVirtualListComponent,
         ProfileComponent,
         ResetPasswordComponent,
         SettingsComponent,
         SidenavContentComponent,
         SignupComponent,
-        PostListComponent,
-        PostToolbarComponent,
-        AuthToolbarComponent,
-        DefaultToolbarComponent,
-        BtnProfileComponent,
-        PostVirtualListComponent,
-        PostVirtualElementComponent,
-        FabEditPostComponent,
-        FabCreatePostComponent,
-        FileUploadComponent,
-        FeaturedImageComponent,
-        FileUploadDialogComponent,
         TestUploadDialogComponent,
-        DropzoneDirective,
-
     ],
     imports: [
         AppRoutingModule,
+        AuthGuardModule,
         BrowserModule,
         CustomFirebaseModule,
         CustomMaterialModule,
         CustomTinymceModule,
         FlexLayoutModule,
         FormsModule,
+        MaterialFileInputModule,
         MomentModule,
         ReactiveFormsModule,
-        TranslateModule.forRoot(),
         ScrollingModule,
-        AuthGuardModule,
-        MaterialFileInputModule,
+        TranslateModule.forRoot(),
     ],
     entryComponents: [FileUploadDialogComponent],
     providers: [
-        I18nService,
-        CustomTitleService,
-        NotificationService,
         AuthGuard,
-        LoggedInGuard,
-        SettingsService,
-        FileUploadService,
-        // DiscardChangesGuard,
-        StoreService,
-        PaginatorService,
         CustomTitleService,
+        CustomTitleService,
+        // DiscardChangesGuard,
+        FileUploadService,
+        I18nService,
+        LoggedInGuard,
+        NotificationService,
+        PaginatorService,
         ProfileService,
+        SettingsService,
+        StoreService,
         {
             provide: APP_INITIALIZER,
             useFactory: initFunction,

@@ -11,7 +11,8 @@
                 </span>
             </ng-template>
 
-            <div #dropzone dropzone class="dropzone" (hovered)="toggleHover($event)" (dropped)="startUpload($event)">
+            <div #dropzone dropzone class="dropzone" [ngClass]="isHovering  ? 'hovered' : ''"
+                (hovered)="toggleHover($event)" (dropped)="startUpload($event)">
                 Content 1
             </div>
 
