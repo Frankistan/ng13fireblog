@@ -1,49 +1,49 @@
-.content {
+:host .content {
     height: calc(100vh - 6rem);
+
+    ::ng-deep .mat-tab-group {
+        height: 100%;
+
+        .mat-tab-label {
+            &.mat-tab-label-active {
+                background-color: transparent;
+                color: #3F51B5;
+                font-weight: 500;
+                opacity: 1; // FIX Label has focused style after clicking - https://github.com/angular/components/issues/5903#issuecomment-802788039
+            }
+
+            &:hover {
+                transition: color 0.1s ease;
+                color: #80a7e6;
+            }
+        }
+
+        .mat-tab-body-wrapper {
+            height: 100%;
+            padding-top: 1rem;
+
+            .mat-tab-body {
+                height: 100%;
+
+                .dropzone {
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &:hover {
+                        box-shadow: 0px 0px 0px 3px #1A73E8 inset;
+                        background: rgba(26, 115, 232, 0.1);
+                        border-radius: 8px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .hovered {
     box-shadow: 0px 0px 0px 3px #1A73E8 inset;
     background: rgba(26, 115, 232, 0.1);
     border-radius: 8px;
-}
-
-::ng-deep .mat-tab-group {
-    height: 100% !important;
-
-    .mat-tab-label {
-        &.mat-tab-label-active {
-            background-color: transparent;
-            color: #3F51B5;
-            font-weight: 500;
-            opacity: 1; // FIX Label has focused style after clicking - https://github.com/angular/components/issues/5903#issuecomment-802788039
-        }
-
-        &:hover {
-            transition: color 0.1s ease;
-            color: #80a7e6;
-        }
-    }
-
-    .mat-tab-body-wrapper {
-        height: 100% !important;
-        margin: 1rem;
-
-        .mat-tab-body {
-            height: 100%;
-
-            .dropzone {
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                &:hover {
-                    box-shadow: 0px 0px 0px 3px #1A73E8 inset;
-                    background: rgba(26, 115, 232, 0.1);
-                    border-radius: 8px;
-                }
-            }
-        }
-    }
 }
