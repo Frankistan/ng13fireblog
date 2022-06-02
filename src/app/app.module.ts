@@ -11,6 +11,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MomentModule } from "ngx-moment";
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TranslateModule } from '@ngx-translate/core';
+import { WebcamModule } from 'ngx-webcam';
 // MIX
 import { environment } from '@env/environment';
 // SERVICES
@@ -62,6 +63,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
+import { CameraComponent } from './layout/camera/camera.component';
 
 
 /*
@@ -72,6 +74,7 @@ https://fonts.google.com/
 https://material.angular.io/
 https://tburleson-layouts-demos.firebaseapp.com/
 https://css2sass.herokuapp.com/
+https://tburleson-layouts-demos.firebaseapp.com/#/docs
 
 */
 
@@ -110,6 +113,7 @@ https://css2sass.herokuapp.com/
         SidenavContentComponent,
         SignupComponent,
         TestUploadDialogComponent,
+        CameraComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -125,6 +129,7 @@ https://css2sass.herokuapp.com/
         ReactiveFormsModule,
         ScrollingModule,
         TranslateModule.forRoot(),
+        WebcamModule
     ],
     entryComponents: [FileUploadDialogComponent],
     providers: [
