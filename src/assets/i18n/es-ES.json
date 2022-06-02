@@ -107,7 +107,7 @@
         "reset_password": "Resetear Contraseña",
         "settings": "Ajustes",
         "signup": "Regístrate",
-        "upload": "Subir imagen"
+        "uploads": "Subir imagen"
     },
     "navbar": {
         "sort-by": {
@@ -139,6 +139,7 @@
         "login": "Inicia Sesión",
         "logout": "Desconexión",
         "polls": "Encuestas",
+        "uploads": "Subir imagen",
         "settings": "Ajustes",
         "signup": "Regístrate",
         "wall": "Muro"

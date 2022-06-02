@@ -40,10 +40,10 @@ const routes: Routes = [
         data: { title: marker('title.profile'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
-        path: "polls",
+        path: "uploads",
         component: TestUploadDialogComponent,
         canActivate: [AuthGuard],
-        data: { title: marker('title.polls'), authGuardPipe: redirectUnauthorizedToLogin }
+        data: { title: marker('title.uploads'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
         path: "auth",

@@ -107,7 +107,7 @@
         "reset_password": "Reset Password",
         "settings": "Settings",
         "signup": "Sign Up",
-        "upload": "Upload Image"
+        "uploads": "Upload Image"
     },
     "navbar": {
         "sort-by": {
@@ -139,6 +139,7 @@
         "login": "Login",
         "logout": "Logout",
         "polls": "Polls",
+        "uploads": "Upload Image",
         "settings": "Settings",
         "signup": "Sign Up",
         "wall": "Wall"

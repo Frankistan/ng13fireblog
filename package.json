@@ -32,6 +32,7 @@
         "@ngx-translate/core": "^14.0.0",
         "firebase": "^9.8.2",
         "moment": "^2.29.3",
+        "ngx-image-cropper": "^6.1.0",
         "ngx-material-file-input": "^3.0.0",
         "ngx-moment": "^6.0.2",
         "ngx-tinymce": "^13.0.0",

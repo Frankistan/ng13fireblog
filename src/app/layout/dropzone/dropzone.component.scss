@@ -1,0 +1,66 @@
+.hovered {
+    box-shadow: 0px 0px 0px 3px #1A73E8 inset;
+    background: rgba(26, 115, 232, 0.1);
+    border-radius: 8px;
+}
+
+.dropzone {
+    height: 100%;
+
+    &:hover {
+        box-shadow: 0px 0px 0px 3px #1A73E8 inset;
+        background: rgba(26, 115, 232, 0.1);
+        border-radius: 8px;
+    }
+
+    .dummy-image {
+        height: 180px;
+        width: 180px;
+        margin-top: 3rem;
+        background-image: url('https://www.gstatic.com/identity/boq/profilepicturepicker/photo_silhouette_e02a5f5deb3ffc173119a01bc9575490.png');
+        background-size: cover;
+    }
+
+    .dropzone-info {
+        line-height: 2rem;
+        font-size: 1.5rem;
+        letter-spacing: 0;
+        font-weight: 400;
+        color: #e8eaed;
+        padding-top: 2rem;
+    }
+
+    .or-divider {
+        line-height: 1.5rem;
+        font-size: 1rem;
+        letter-spacing: .00625em;
+        font-weight: 400;
+        color: #e8eaed;
+        padding-bottom: 1rem;
+    }
+
+
+    button {
+        color: #85ADEF;
+        border-color: #3F4146;
+        margin-bottom: 3rem;
+    }
+
+    .hover-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #FFFFFF;
+        height: 3rem;
+        width: 23rem;
+        border: 1px solid #4C5053;
+        color: #787B7D;
+        border-radius: 0.5rem;
+        margin: auto;
+        visibility: hidden;
+
+        &.visible {
+            visibility: visible;
+        }
+    }
+}

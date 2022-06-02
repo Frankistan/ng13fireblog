@@ -22,22 +22,13 @@ https://www.procodeprogramming.com/blogs/file-drag-and-drop-in-angular-10
 })
 export class TestUploadDialogComponent implements OnInit {
 
-    isHovering: boolean; // State for dropzone CSS toggling
+
     webcamImage: WebcamImage | undefined = null;
 
 
     constructor(private fus: FileUploadService) { }
 
     ngOnInit(): void { }
-
-    toggleHover(event: boolean) {
-        this.isHovering = event;
-    }
-
-    async startUpload(event: any) {
-        const url = await this.fus.upload(event[0].name, event[0]);
-        console.log("URL:", url);
-    }
 
 
 

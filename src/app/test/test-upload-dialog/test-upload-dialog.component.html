@@ -1,44 +1,45 @@
 <app-default-toolbar></app-default-toolbar>
 
-<mat-card class="content">
+<div fxLayoutAlign="center">
+    <mat-card class="content" fxLayout="column" fxFlex="100" fxFlex.sm="65" fxFlex.gt-sm="60">
+        <mat-card-header>
+            Cambiar imagen de perfil
+        </mat-card-header>
+        <mat-tab-group animationDuration="0ms" mat-stretch-tabs id="tab-group">
+            <mat-tab>
+                <ng-template mat-tab-label mat-tab-label-active>
+                    <span fxLayout="column" fxLayoutAlign="space-between center">
+                        <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">laptop</mat-icon>
+                        <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.pc' | translate }}</span>
+                    </span>
+                </ng-template>
 
-    <mat-tab-group animationDuration="0ms" mat-stretch-tabs id="tab-group">
-        <mat-tab>
-            <ng-template mat-tab-label mat-tab-label-active>
-                <span fxLayout="column" fxLayoutAlign="space-between center">
-                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">laptop</mat-icon>
-                    <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.pc' | translate }}</span>
-                </span>
-            </ng-template>
+                <app-dropzone></app-dropzone>
 
-            <div #dropzone dropzone class="dropzone" [ngClass]="isHovering  ? 'hovered' : ''"
-                (hovered)="toggleHover($event)" (dropped)="startUpload($event)">
-                Content 1
-            </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span fxLayout="column" fxLayoutAlign="space-between center">
+                        <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">language</mat-icon>
+                        <span fxFlex fxFlexOrder="2">URL</span>
+                    </span>
+                </ng-template>
+                Content 2
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span fxLayout="column" fxLayoutAlign="space-between center">
+                        <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">linked_camera</mat-icon>
+                        <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.camera' | translate }}</span>
+                    </span>
+                </ng-template>
+                <app-camera (getPicture)="handleImage($event)"></app-camera>
 
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <span fxLayout="column" fxLayoutAlign="space-between center">
-                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">language</mat-icon>
-                    <span fxFlex fxFlexOrder="2">URL</span>
-                </span>
-            </ng-template>
-            Content 2
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <span fxLayout="column" fxLayoutAlign="space-between center">
-                    <mat-icon fxFlex fxFlexOrder="1" class="example-tab-icon">linked_camera</mat-icon>
-                    <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.camera' | translate }}</span>
-                </span>
-            </ng-template>
-            <app-camera (getPicture)="handleImage($event)"></app-camera>
+                <div class="webcam-image" *ngIf="webcamImage">
+                    <img [src]="webcamImage.imageAsDataUrl" />
+                </div>
+            </mat-tab>
+        </mat-tab-group>
 
-            <div class="webcam-image" *ngIf="webcamImage">
-                <img [src]="webcamImage.imageAsDataUrl" />
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-
-</mat-card>
+    </mat-card>
+</div>

@@ -64,13 +64,15 @@ import { SidenavContentComponent } from './layout/sidenav-content/sidenav-conten
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
 import { CameraComponent } from './layout/camera/camera.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { DropzoneComponent } from './layout/dropzone/dropzone.component';
 
 
 /*
 https://github.com/Frankistan/ng13fireblog
 https://console.firebase.google.com/
 https://openbase.com/
-https://fonts.google.com/
+https://fonts.google.com/icons
 https://material.angular.io/
 https://tburleson-layouts-demos.firebaseapp.com/
 https://css2sass.herokuapp.com/
@@ -114,6 +116,7 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         SignupComponent,
         TestUploadDialogComponent,
         CameraComponent,
+        DropzoneComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -124,12 +127,13 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         CustomTinymceModule,
         FlexLayoutModule,
         FormsModule,
+        ImageCropperModule,
         MaterialFileInputModule,
         MomentModule,
         ReactiveFormsModule,
         ScrollingModule,
         TranslateModule.forRoot(),
-        WebcamModule
+        WebcamModule,
     ],
     entryComponents: [FileUploadDialogComponent],
     providers: [
