@@ -1,6 +1,7 @@
 .content {
     background-color: #202124;
     height: 41.25rem;
+    z-index: 1; // TODO: ES POSIBLE QUE HAYA QUE BORRARLO CUANDO SEA UN DIALOG
 
     mat-card-header {
         text-align: center;

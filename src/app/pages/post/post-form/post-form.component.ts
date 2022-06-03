@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, FormGroupName } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { IPost } from '@app/models/post';
 import { I18nService } from '@app/services/i18n.service';
 import { PostService } from '@app/services/post.service';
-import { ENTER, COMMA } from "@angular/cdk/keycodes";
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -25,7 +24,6 @@ export class PostFormComponent implements OnInit, OnDestroy {
     @ViewChild('chipList', { static: true }) chipList!: MatChipList;
 
     private destroy = new Subject<void>();
-    private _post!: IPost;
 
     form!: FormGroup;
     isAddMode: boolean = false;

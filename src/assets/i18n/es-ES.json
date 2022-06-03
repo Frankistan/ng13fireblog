@@ -95,6 +95,7 @@
         "apps": "Aplicaciones",
         "favorites": "Favoritas",
         "home": "Yunity",
+        "image_editor": "Editor de Imágenes",
         "login": "Inicia Sesión",
         "posts": {
             "edit": "Editar Post",
@@ -135,6 +136,7 @@
         "favorites": "Favoritas",
         "feeds": "Blogs",
         "help": "Ayuda",
+        "image_editor": "Editor de Imágenes",
         "home": "Inicio",
         "login": "Inicia Sesión",
         "logout": "Desconexión",

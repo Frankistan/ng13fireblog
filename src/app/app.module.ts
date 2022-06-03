@@ -1,5 +1,5 @@
 // MODULES
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule, ɵɵinject } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CustomFirebaseModule } from './modules/custom-firebase.module';
@@ -46,7 +46,7 @@ import { DefaultToolbarComponent } from './layout/toolbar/default-toolbar/defaul
 import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post.component';
 import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
 import { FeaturedImageComponent } from './layout/featured-image/featured-image.component';
-import { FileUploadComponent } from './layout/file-upload/file-upload.component';
+import { FileUploadComponent } from './layout/file-upload-form/file-upload-form.component';
 import { FileUploadDialogComponent } from './layout/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { NavToolbarComponent } from './layout/toolbar/nav-toolbar/nav-toolbar.component';
@@ -66,6 +66,9 @@ import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload
 import { CameraComponent } from './layout/camera/camera.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { DropzoneComponent } from './layout/dropzone/dropzone.component';
+import { ImageEditorComponent } from './layout/image-editor/image-editor.component';
+import { FabScrollToTopComponent } from './layout/fab-scroll-to-top/fab-scroll-to-top.component';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
 
 
 /*
@@ -117,6 +120,8 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         TestUploadDialogComponent,
         CameraComponent,
         DropzoneComponent,
+        ImageEditorComponent,
+        FabScrollToTopComponent,
     ],
     imports: [
         AppRoutingModule,

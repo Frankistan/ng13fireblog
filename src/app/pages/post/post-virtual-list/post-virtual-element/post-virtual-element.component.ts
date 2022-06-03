@@ -7,7 +7,7 @@ import { IPost } from '@app/models/post';
     styleUrls: ['./post-virtual-element.component.scss']
 })
 export class PostVirtualElementComponent implements OnInit {
-    @Input() item!: IPost;
+    @Input() post!: IPost;
 
     constructor() { }
 

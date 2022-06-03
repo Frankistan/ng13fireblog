@@ -23,9 +23,15 @@ https://stackoverflow.com/questions/50922417/how-to-paginate-or-infinite-scroll-
 })
 export class PaginatorService {
 
+    // Source data
+    private _done = new BehaviorSubject<boolean>(false);
     private _last: QueryDocumentSnapshot<DocumentData> | null = null;
     private _data = new BehaviorSubject<IPost[]>([]);
+    private _loading = new BehaviorSubject<boolean>(false);
 
+    // Observable data
+    done: Observable<boolean> = this._done.asObservable();
+    loading: Observable<boolean> = this._loading.asObservable();
     data: Observable<IPost[]> = this._data.asObservable().pipe(
         scan((acc, val) => {
             return acc.concat(val);
@@ -73,5 +79,11 @@ export class PaginatorService {
 
         this._data.next(posts);
 
+    }
+
+    // Reset the page
+    reset() {
+        this._data.next([]);
+        this._done.next(false);
     }
 }

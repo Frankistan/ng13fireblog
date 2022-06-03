@@ -1,11 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { AfterViewInit, Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { CdkScrollable, CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { PaginatorService } from '@app/services/paginator.service';
-import { Observable } from 'rxjs';
+import { distinctUntilChanged, Observable } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
+
 import { IPost } from '@app/models/post';
 
 /*
 https://stackblitz.com/edit/angular-cdk-demo-virtual-scroll?file=app%2Fvirtual-scroll%2Fvirtual-scroll.component.ts
+https://stackblitz.com/edit/angular-custom-viewport-scroller?file=src%2Fapp%2Fcustom-viewport-scroller.ts
+https://theangularpath.anirbanblogs.com/2021/06/angular-scroll-to-top-implementation.html
+https://github.com/anirbmuk/angular-scroll-to-top.git
 */
 
 @Component({
@@ -13,7 +18,7 @@ https://stackblitz.com/edit/angular-cdk-demo-virtual-scroll?file=app%2Fvirtual-s
     templateUrl: './post-virtual-list.component.html',
     styleUrls: ['./post-virtual-list.component.scss']
 })
-export class PostVirtualListComponent implements OnInit {
+export class PostVirtualListComponent implements OnInit, AfterViewInit {
 
     // DUMMY DATA
     items = Array.from({ length: 100 }).map((value, i) => {
@@ -31,19 +36,26 @@ export class PostVirtualListComponent implements OnInit {
     viewport!: CdkVirtualScrollViewport;
 
     theEnd: boolean = false;
-    data$!: Observable<IPost[]>;
+    data$: Observable<IPost[]> = this.page.data;
+
+    visible$: Observable<boolean>;
+    scrollPosition: number = 0;
+    visible: boolean = false;
 
     constructor(
-        private page: PaginatorService
-    ) { }
+        private page: PaginatorService,
+        private scrollDispatcher: ScrollDispatcher,
+        private zone: NgZone,
+    ) {
+
+    }
 
     ngOnInit(): void {
-
+        this.page.reset();
         this.page.init();
-        this.data$ = this.page.data;
+        // this.data$ = this.page.data;
 
-        this.page.data.subscribe(data => console.log("posts: ", data)
-        )
+        // this.page.data.subscribe(data => console.log("posts: ", data));
 
     }
 
@@ -65,6 +77,42 @@ export class PostVirtualListComponent implements OnInit {
 
     trackByIdx(i: any) {
         return i;
+    }
+
+    ngAfterViewInit(): void {
+
+        this.visible$ = this.scrollDispatcher.scrolled()
+            .pipe(
+                map((event: any) => event.elementRef.nativeElement),
+                map((el: any) => {
+
+                    return this.zone.run(() => {
+                        let scroll = el.scrollTop;
+                        const offSet = 100;
+
+                        switch (true) {
+                            case scroll == 0: // TOP
+                                this.visible = false;
+                                break;
+                            case (scroll) > (this.scrollPosition): // DOWN
+                                this.visible = false;
+                                break;
+                            case (scroll) < (this.scrollPosition + offSet): // UP
+                                this.visible = true;
+                                break;
+
+                            default:
+                                this.visible = false;
+                                break;
+                        }
+
+                        this.scrollPosition = scroll;
+
+                        return this.visible;
+                    })
+                }),
+                distinctUntilChanged()
+            );
     }
 
 }

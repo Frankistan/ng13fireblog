@@ -23,9 +23,9 @@ https://stackblitz.com/edit/demo-ngx-mat-file-input
 */
 
 @Component({
-    selector: 'app-file-upload',
-    templateUrl: './file-upload.component.html',
-    styleUrls: ['./file-upload.component.scss']
+    selector: 'app-file-upload-form',
+    templateUrl: './file-upload-form.component.html',
+    styleUrls: ['./file-upload-form.component.scss']
 })
 export class FileUploadComponent implements OnInit, OnDestroy {
     form!: FormGroup;

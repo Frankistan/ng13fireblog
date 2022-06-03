@@ -1,11 +1,12 @@
 <div class="virtual-scroll-container">
     <cdk-virtual-scroll-viewport #viewport itemSize="75" class="virtual-scroll-viewport"
         (scrolledIndexChange)="nextBatch()">
-        <app-post-virtual-element *cdkVirtualFor="let post of (data$ | async); let i = index" [item]="post">
+        <app-post-virtual-element *cdkVirtualFor="let post of (data$ | async); let i = index" [post]="post">
         </app-post-virtual-element>
     </cdk-virtual-scroll-viewport>
 </div>
 <fab-create-post></fab-create-post>
+<fab-scroll-to-top [viewport]="viewport" *ngIf="(visible$|async) && visible"></fab-scroll-to-top>
 
 <!-- <div class="virtual-scroll-container">
     <cdk-virtual-scroll-viewport #viewport itemSize="75" class="virtual-scroll-viewport">

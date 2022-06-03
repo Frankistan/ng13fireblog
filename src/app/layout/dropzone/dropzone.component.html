@@ -1,10 +1,12 @@
 <div dropzone class="dropzone" fxLayout="column" fxLayoutAlign="space-between center"
-    [ngClass]="isHovering  ? 'hovered' : ''" (hovered)="toggleHover($event)" (dropped)="startUpload($event)">
+    [ngClass]="isHovering  ? 'hovered' : ''" (hovered)="toggleHover($event)" (dropped)="droppedEvent($event)">
 
     <div class="dummy-image"> </div>
     <div class="dropzone-info">Arrastra una foto aquí</div>
     <div class="or-divider">— o —</div>
-    <button mat-stroked-button>Subir del ordenador</button>
+    <input #fileInput type="file" access=".png,.jpg" (change)="fileChangeEvent($event)" style="display: none;" />
+
+    <button mat-stroked-button (click)="fileInput.click()">Subir del ordenador</button>
     <div class="hover-state" [ngClass]="isHovering  ? 'visible' : ''">
         <span>Suelta la imagen para subirla</span>
     </div>

@@ -46,6 +46,12 @@ const routes: Routes = [
         data: { title: marker('title.uploads'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
+        path: "image-editor",
+        component: TestUploadDialogComponent,
+        canActivate: [AuthGuard],
+        data: { title: marker('title.image_editor'), authGuardPipe: redirectUnauthorizedToLogin }
+    },
+    {
         path: "auth",
         component: AuthComponent,
         ...canActivate(redirectLoggedInToHome),

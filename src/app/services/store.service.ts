@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 
 
 /*
@@ -11,11 +11,18 @@ https://stackoverflow.com/questions/48073057/open-close-sidenav-from-another-com
 })
 export class StoreService {
     private sidenav!: MatSidenav;
+    public sidenavContent!: MatSidenavContent;
 
 
     public setSidenav(sidenav: MatSidenav) {
         this.sidenav = sidenav;
     }
+
+    // public setSidenavContent(sidenavContent: MatSidenavContent) {
+    //     this.sidenavContent = sidenavContent;
+    // }
+
+
 
     public open() {
         return this.sidenav.open();
