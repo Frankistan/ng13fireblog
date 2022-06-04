@@ -3,18 +3,63 @@
 <div fxLayoutAlign="center">
     <mat-card class="content" fxLayout="column" fxFlex="100" fxFlex.sm="65" fxFlex.gt-sm="60">
 
-        <mat-card-header fxLayout="row" fxLayoutAlign="space-around center">
-            <mat-icon class="header-element" fxFlex>arrow_back</mat-icon>
-            <span class="header-element" fxFlex>Editar imagen</span>
-            <mat-icon class="header-element" fxFlex>restart_alt</mat-icon>
-        </mat-card-header>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="mat-card-header">
+
+            <div>
+                <button mat-mini-fab [matTooltip]="'upload.back'|translate" (click)="back()">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+            </div>
+            <div><span>Editar imagen</span></div>
+            <div>
+                <button mat-mini-fab [matTooltip]="'upload.action.reset'|translate" (click)="resetImage()">
+                    <mat-icon>restart_alt</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <input #fileInput type="file" access=".png,.jpg" (change)="fileChangeEvent($event)" style="display: none;" />
+
+        <button mat-raised-button color="primary" (click)="fileInput.click()">
+            <mat-icon>image</mat-icon>
+            {{ "upload.browse" | translate }}
+        </button>
 
         <mat-card-content>
+
+            <div class="image-cropper">
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                    [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256"
+                    [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+                    [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'"
+                    [style.display]="showCropper ? null : 'none'" [format]="format" (imageLoaded)="imageLoaded($event)"
+                    (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()">
+                </image-cropper>
+                <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+            </div>
 
         </mat-card-content>
 
         <mat-card-actions>
-            <button mat-button>Ok</button>
+            <span fxFlex="33"></span>
+            <div>
+                <button mat-mini-fab [matTooltip]="'upload.action.flip'|translate" (click)="flipVertical()">
+                    <mat-icon>flip</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'upload.action.rotate'|translate" (click)="rotateRight()">
+                    <mat-icon>rotate_90_degrees_ccw</mat-icon>
+                </button>
+                <button mat-mini-fab (click)="toggleContainWithinAspectRatio()">
+                    <mat-icon>{{containWithinAspectRatio?'zoom_out_map' : 'filter_center_focus'}}</mat-icon>
+                </button>
+            </div>
+            <span fxFlex></span>
+            <button mat-stroked-button color="primary" [matTooltip]="'upload.action.crop'|translate" (click)="crop()">
+                <!-- <mat-icon inline=true>crop</mat-icon> -->
+                {{ "upload.action.crop" | translate }}
+            </button>
+
+
         </mat-card-actions>
 
     </mat-card>

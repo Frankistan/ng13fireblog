@@ -202,6 +202,17 @@
         "go-to-original": "Ir al post original"
     },
     "upload": {
+        "action": {
+            "crop": "Recortar",
+            "rotate": "Girar",
+            "flip": "Voltear",
+            "zoom": "Zoom",
+            "zoomIn": "Agrandar",
+            "zoomOut": "Encoger",
+            "reset": "Reiniciar",
+            "upload": "Subir"
+        },
+        "back": "Atrás",
         "browse": "Buscar una imagen...",
         "button": "Subir",
         "drag_and_drop": "Arrastra y suelta aquí una imagen",

@@ -202,6 +202,17 @@
         "go-to-original": "Go to original Post"
     },
     "upload": {
+        "action": {
+            "crop": "Crop",
+            "rotate": "Rotate",
+            "flip": "Flip",
+            "zoom": "Zoom",
+            "zoomIn": "Zoom in",
+            "zoomOut": "Zoom out",
+            "reset": "Reset",
+            "upload": "Upload"
+        },
+        "back": "Go back",
         "browse": "Browse for an image...",
         "button": "Upload",
         "drag_and_drop": "Drag and Drop your image file here",

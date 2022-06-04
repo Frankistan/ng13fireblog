@@ -1,42 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
-
-/*  image cropper imports ****/
 import {
     base64ToFile,
     ImageTransform,
     ImageCroppedEvent,
     Dimensions,
-    ImageCropperComponent,
-    OutputFormat,
-    LoadedImage
+    ImageCropperComponent
 } from 'ngx-image-cropper';
 
-/*
-https://www.positronx.io/angular-image-upload-preview-crop-zoom-and-scale-example/
-https://openbase.com/js/ngx-img-cropper
-https://www.freakyjolly.com/ngx-image-cropper-tutorial/
-https://stackblitz.com/edit/image-cropper
-https://stackblitz.com/edit/resizing-cropping-image
-https://alyle.io/components/image-cropper
-https://codepen.io/enlcxx/pen/vmadQz
-https://stackblitz.com/edit/resizing-cropping-image
-ver como lo gestiona: https://stackblitz.com/edit/image-cropper-f2ltmr
-get form URL http://www.programmersought.com/article/52582038406/
-
-*/
-
-@Component({
-    selector: 'app-image-editor',
-    templateUrl: './image-editor.component.html',
-    styleUrls: ['./image-editor.component.scss']
+@Injectable({
+    providedIn: 'root'
 })
-export class ImageEditorComponent implements OnInit {
+export class ImageEditorService {
 
-    fileName: string = "";
 
-    /***** image cropper vars */
-    @ViewChild(ImageCropperComponent, { static: false }) cropper: ImageCropperComponent;
+    cropper!: any;
+    fileName!: any;
+
     imageChangedEvent: any = '';
     croppedImage: any = '';
     canvasRotation = 0;
@@ -46,32 +26,11 @@ export class ImageEditorComponent implements OnInit {
     containWithinAspectRatio = false;
     transform: ImageTransform = {};
     croppedImageFile: File;
-    format: OutputFormat = "jpeg";
+    format: any = "jpg";
+
 
     constructor() { }
 
-    ngOnInit(): void {
-    }
-
-    back() {
-        console.log("go back");
-
-    }
-
-    /************ image cropper fns *************/
-    fileChangeEvent(e: any): void {
-        this.fileName = e.target.files[0].name;
-        this.imageChangedEvent = e;
-        this.croppedImage = null;
-    }
-
-    // automatic cropping on mousemove -- 
-    // lo desabilito porque puse un boton para recortar
-    // hay que añadir (imageCropped)="imageCropped($event)"  al html
-    // imageCropped(event: ImageCroppedEvent) {
-    // 	this.croppedImage = event.base64;
-    // 	console.log(event, base64ToFile(event.base64));
-    // }
 
     // manual cropping on button click
     crop() {
@@ -80,7 +39,7 @@ export class ImageEditorComponent implements OnInit {
         this.croppedImageFile = new File([base64ToFile(e.base64)], this.fileName);
     }
 
-    imageLoaded(image: LoadedImage) {
+    imageLoaded() {
         this.showCropper = true;
         console.log('Image loaded');
     }
@@ -116,14 +75,14 @@ export class ImageEditorComponent implements OnInit {
     flipHorizontal() {
         this.transform = {
             ...this.transform,
-            flipV: !this.transform.flipV
+            flipH: !this.transform.flipH
         };
     }
 
     flipVertical() {
         this.transform = {
             ...this.transform,
-            flipH: !this.transform.flipH
+            flipV: !this.transform.flipV
         };
     }
 
