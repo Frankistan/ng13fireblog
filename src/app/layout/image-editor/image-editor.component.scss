@@ -1,0 +1,39 @@
+mat-card {
+    background-color: #202124;
+    height: 41.25rem;
+    z-index: 1; // TODO: ES POSIBLE QUE HAYA QUE BORRARLO CUANDO SEA UN DIALOG
+
+    mat-card-header {
+        color: #e8eaed;
+        padding: 0.5rem 0;
+        line-height: 1rem;
+        font-size: 1.125rem;
+        letter-spacing: 0;
+        font-weight: 400;
+
+
+        span {
+
+            flex: auto !important;
+        }
+
+
+        .mat-icon:nth-last-child(1) {
+
+            flex: 0 !important;
+        }
+
+        ::ng-deep .mat-card-header-text {
+            margin: 0;
+        }
+
+    }
+
+    mat-card-content {
+        height: 100%;
+
+        border: 1px solid red;
+
+
+    }
+}
