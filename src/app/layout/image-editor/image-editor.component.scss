@@ -15,20 +15,21 @@ mat-card {
         button {
             background-color: transparent;
         }
-
-        // ::ng-deep .mat-card-header-text {
-        //     margin: 0;
-        // }
-
     }
 
     mat-card-content {
         height: 100%;
         border: 1px solid red;
 
-        .image-cropper>* {
-            padding: 0;
+
+        image-cropper {
+            max-height: 30rem;
+
         }
+
+
+        --cropper-overlay-color:transparent;
+        --cropper-outline-color:transparent;
     }
 
     mat-card-actions {
@@ -43,9 +44,10 @@ mat-card {
                 color: whitesmoke;
             }
         }
-
-
     }
+}
 
-
+.ngx-ic-source-image,
+.ng-star-inserted {
+    margin: 0 !important;
 }

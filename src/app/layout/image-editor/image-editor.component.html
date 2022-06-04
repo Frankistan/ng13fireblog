@@ -1,7 +1,7 @@
 <app-default-toolbar></app-default-toolbar>
 
 <div fxLayoutAlign="center">
-    <mat-card class="content" fxLayout="column" fxFlex="100" fxFlex.sm="65" fxFlex.gt-sm="60">
+    <mat-card fxLayout="column" fxFlex="100" fxFlex.sm="65" fxFlex.gt-sm="60">
 
         <div fxLayout="row" fxLayoutAlign="space-between center" class="mat-card-header">
 
@@ -25,17 +25,17 @@
             {{ "upload.browse" | translate }}
         </button>
 
-        <mat-card-content>
+        <mat-card-content fxLayoutAlign="center center">
 
-            <div class="image-cropper">
-                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+            <div>
+                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" fxFlex
                     [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256"
                     [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
-                    [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'left'"
+                    [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'center'"
                     [style.display]="showCropper ? null : 'none'" [format]="format" (imageLoaded)="imageLoaded($event)"
                     (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()">
                 </image-cropper>
-                <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" />
+                <!-- <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" /> -->
             </div>
 
         </mat-card-content>

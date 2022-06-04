@@ -13,6 +13,11 @@ import {
 } from 'ngx-image-cropper';
 
 /*
+
+STYLE a CSS variable on HMTL
+https://stackoverflow.com/questions/63101535/change-css-variables-dynamically-in-angular#:~:text=%3Capp%2Dcomponent%2Dname%20%5Bstyle.%2D%2Dtheme%2Dcolor%2D1%3D%22%27%23CCC%27%22%3E%3C/app%2Dcomponent%2Dname%3E
+
+
 https://www.positronx.io/angular-image-upload-preview-crop-zoom-and-scale-example/
 https://openbase.com/js/ngx-img-cropper
 https://www.freakyjolly.com/ngx-image-cropper-tutorial/
