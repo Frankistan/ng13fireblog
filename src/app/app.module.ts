@@ -63,12 +63,12 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
-import { CameraComponent } from './layout/camera/camera.component';
+import { CameraComponent } from './layout/upload/upload-camera/camera.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { DropzoneComponent } from './layout/dropzone/dropzone.component';
+import { DropzoneComponent } from './layout/upload/upload-dropzone/dropzone.component';
 import { ImageEditorComponent } from './layout/image-editor/image-editor.component';
 import { FabScrollToTopComponent } from './layout/fab-scroll-to-top/fab-scroll-to-top.component';
-import { DOCUMENT, ViewportScroller } from '@angular/common';
+import { UploadUrlComponent } from './layout/upload/upload-url/upload-url.component';
 
 
 /*
@@ -122,6 +122,7 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         DropzoneComponent,
         ImageEditorComponent,
         FabScrollToTopComponent,
+        UploadUrlComponent,
     ],
     imports: [
         AppRoutingModule,

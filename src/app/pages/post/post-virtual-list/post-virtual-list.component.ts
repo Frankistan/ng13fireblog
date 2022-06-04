@@ -2,7 +2,7 @@ import { AfterViewInit, Component, NgZone, OnInit, ViewChild } from '@angular/co
 import { CdkScrollable, CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { PaginatorService } from '@app/services/paginator.service';
 import { distinctUntilChanged, Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, filter } from 'rxjs/operators';
 
 import { IPost } from '@app/models/post';
 
@@ -84,6 +84,7 @@ export class PostVirtualListComponent implements OnInit, AfterViewInit {
         this.visible$ = this.scrollDispatcher.scrolled()
             .pipe(
                 map((event: any) => event.elementRef.nativeElement),
+                filter((el: any) => el.tagName == "CDK-VIRTUAL-SCROLL-VIEWPORT"),
                 map((el: any) => {
 
                     return this.zone.run(() => {

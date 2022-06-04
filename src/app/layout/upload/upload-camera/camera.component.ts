@@ -2,8 +2,18 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 
+/*
+https://medium.com/@coolchoudharyvijay/use-webcam-in-angular-simplified-c1ee012e875f
+https://stackblitz.com/edit/ngx-webcam-demo
+https://edupala.com/how-capture-image-using-angular-camera/
+https://www.npmjs.com/package/ngx-webcam
+https://github.com/basst314/ngx-webcam
+
+
+*/
+
 @Component({
-    selector: 'app-camera',
+    selector: 'upload-camera',
     templateUrl: './camera.component.html',
     styleUrls: ['./camera.component.scss']
 })

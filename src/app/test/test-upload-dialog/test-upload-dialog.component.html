@@ -14,7 +14,7 @@
                     </span>
                 </ng-template>
 
-                <app-dropzone></app-dropzone>
+                <upload-dropzone></upload-dropzone>
 
             </mat-tab>
             <mat-tab>
@@ -24,7 +24,9 @@
                         <span fxFlex fxFlexOrder="2">URL</span>
                     </span>
                 </ng-template>
-                Content 2
+
+                <upload-url></upload-url>
+
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
@@ -33,7 +35,8 @@
                         <span fxFlex fxFlexOrder="2">{{ 'upload.dialog.camera' | translate }}</span>
                     </span>
                 </ng-template>
-                <app-camera (getPicture)="handleImage($event)"></app-camera>
+
+                <upload-camera (getPicture)="handleImage($event)"></upload-camera>
 
                 <div class="webcam-image" *ngIf="webcamImage">
                     <img [src]="webcamImage.imageAsDataUrl" />

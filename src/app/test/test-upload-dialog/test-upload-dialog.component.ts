@@ -3,14 +3,10 @@ import { FileUploadService } from '@app/services/file-upload.service';
 import { WebcamImage } from 'ngx-webcam';
 
 /*
-https://edupala.com/how-capture-image-using-angular-camera/
-https://www.npmjs.com/package/ngx-webcam
-https://github.com/basst314/ngx-webcam
-https://stackblitz.com/edit/ngx-webcam-demo?file=src%2Fapp%2Fapp.component.ts
-https://medium.com/@coolchoudharyvijay/use-webcam-in-angular-simplified-c1ee012e875f
 
-https://www.procodeprogramming.com/blogs/file-drag-and-drop-in-angular-10
-
+********* importante como luego lo agrega al formulario original para añadir la URL de la imagen  al post
+https://laratutorials.com/angular-12-image-file-upload-example/
+https://www.positronx.io/angular-show-image-preview-with-reactive-forms-tutorial/
 
 */
 

@@ -3,8 +3,13 @@ import { MatSliderChange } from '@angular/material/slider';
 import { FileUploadService } from '@app/services/file-upload.service';
 import { ImageCropperComponent, ImageTransform, ImageCroppedEvent, base64ToFile, Dimensions } from 'ngx-image-cropper';
 
+/*
+https://www.procodeprogramming.com/blogs/file-drag-and-drop-in-angular-10
+
+*/
+
 @Component({
-    selector: 'app-dropzone',
+    selector: 'upload-dropzone',
     templateUrl: './dropzone.component.html',
     styleUrls: ['./dropzone.component.scss']
 })

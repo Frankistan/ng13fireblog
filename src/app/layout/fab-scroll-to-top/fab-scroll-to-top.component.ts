@@ -1,31 +1,18 @@
-import { CdkScrollable, CdkVirtualScrollViewport, ScrollDispatcher } from '@angular/cdk/scrolling';
-import { AfterViewInit, Component, Input, NgZone, OnDestroy } from '@angular/core';
-import { MatSidenavContent } from '@angular/material/sidenav';
-import { StoreService } from '@app/services/store.service';
-import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
-
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, Input } from '@angular/core';
+import { slideUp } from '@app/animations/slide-up.animation';
 
 @Component({
     selector: 'fab-scroll-to-top',
     templateUrl: './fab-scroll-to-top.component.html',
     styleUrls: ['./fab-scroll-to-top.component.scss'],
+    animations: [slideUp]
 })
-export class FabScrollToTopComponent implements OnDestroy {
-
-    private destroy = new Subject<void>();
+export class FabScrollToTopComponent {
 
     @Input("viewport") viewport!: CdkVirtualScrollViewport;
 
-
-
-
-    constructor(
-
-
-    ) {
-
-    }
+    constructor() { }
 
     onScrollToTop(): void {
 
@@ -37,11 +24,5 @@ export class FabScrollToTopComponent implements OnDestroy {
             });
 
     }
-
-    ngOnDestroy(): void {
-        this.destroy.next();
-    }
-
-
 
 }
