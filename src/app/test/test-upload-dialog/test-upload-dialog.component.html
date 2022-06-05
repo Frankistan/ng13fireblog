@@ -36,11 +36,9 @@
                     </span>
                 </ng-template>
 
-                <upload-camera (getPicture)="handleImage($event)"></upload-camera>
+                <upload-camera></upload-camera>
 
-                <div class="webcam-image" *ngIf="webcamImage">
-                    <img [src]="webcamImage.imageAsDataUrl" />
-                </div>
+
             </mat-tab>
         </mat-tab-group>
 

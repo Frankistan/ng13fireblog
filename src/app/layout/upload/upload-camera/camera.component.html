@@ -2,12 +2,22 @@
     <div style="text-align:center">
         <div class="btn-group">
             <button class="button" (click)="takeSnapshot()">Take Picture</button>
-            <button class="button" (click)="changeWebCame(true)">Toggle Camera</button>
-            <button class="button" (click)="onOffWebCame()">Switch camera</button>
+            <button class="actionBtn" (click)="showNextWebcam(true)" [disabled]="!multipleWebcamsAvailable">Next
+                Toggle Camera</button>
+            <button class="button" (click)="onOffWebCame()">On/Off camera</button>
         </div> <br />
-        <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
-            *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
+
+        <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"></webcam>
     </div>
+
+    <div class="snapshot" *ngIf="pictureTaken|async as snapshot">
+        <h2>Nice one!</h2>
+        <img [src]="snapshot.imageAsDataUrl" />
+    </div>
+
 
     <div *ngIf="errors.length > 0">
         <h4>Error Messages:</h4>
