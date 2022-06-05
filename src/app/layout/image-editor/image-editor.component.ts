@@ -88,6 +88,8 @@ export class ImageEditorComponent implements OnInit {
         let e: ImageCroppedEvent = this.cropper.crop();
         this.croppedImage = e.base64;
         this.croppedImageFile = new File([base64ToFile(e.base64)], this.fileName);
+        console.log(this.croppedImageFile);
+
     }
 
     imageLoaded(image: LoadedImage) {

@@ -210,7 +210,9 @@
             "zoomIn": "Zoom in",
             "zoomOut": "Zoom out",
             "reset": "Reset",
-            "upload": "Upload"
+            "upload": "Upload",
+            "containWithinAspectRatio": "Contain within aspect ratio",
+            "fillAspectRatio": "Fill aspect ratio"
         },
         "back": "Go back",
         "browse": "Browse for an image...",

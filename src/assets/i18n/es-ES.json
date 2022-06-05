@@ -210,7 +210,9 @@
             "zoomIn": "Agrandar",
             "zoomOut": "Encoger",
             "reset": "Reiniciar",
-            "upload": "Subir"
+            "upload": "Subir",
+            "containWithinAspectRatio": "Sin ajuste de relleno",
+            "fillAspectRatio": "Con ajuste de relleno"
         },
         "back": "Atrás",
         "browse": "Buscar una imagen...",

@@ -48,7 +48,8 @@
                 <button mat-mini-fab [matTooltip]="'upload.action.rotate'|translate" (click)="rotateRight()">
                     <mat-icon>rotate_90_degrees_ccw</mat-icon>
                 </button>
-                <button mat-mini-fab (click)="toggleContainWithinAspectRatio()">
+                <button mat-mini-fab (click)="toggleContainWithinAspectRatio()"
+                    matTooltip="{{ containWithinAspectRatio ?  ('upload.action.containWithinAspectRatio' | translate) : ('upload.action.fillAspectRatio' | translate) }}">
                     <mat-icon>{{containWithinAspectRatio?'zoom_out_map' : 'filter_center_focus'}}</mat-icon>
                 </button>
             </div>
