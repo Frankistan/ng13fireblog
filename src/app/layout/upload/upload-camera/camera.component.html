@@ -1,20 +1,25 @@
-<div *ngIf="isCameraExist; else noCameraExist">
-    <div style="text-align:center">
-        <div class="btn-group">
+<ng-container *ngIf="isCameraExist; else noCameraExist">
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <!-- <div class="btn-group">
             <button class="button" (click)="takeSnapshot()">Take Picture</button>
             <button class="actionBtn" (click)="showNextWebcam(true)" [disabled]="!multipleWebcamsAvailable">Next
                 Toggle Camera</button>
             <button class="button" (click)="onOffWebCame()">On/Off camera</button>
-        </div>
+        </div> -->
 
         <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
-            (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+            (click)="takeSnapshot()" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"></webcam>
 
         <div class="snapshot" *ngIf="pictureTaken|async as snapshot">
             <h2>Nice one!</h2>
             <img [src]="snapshot.imageAsDataUrl" />
         </div>
+    </div>
+
+    <div class="info" fxLayoutAlign="center center">
+        <h2>{{ 'toast.upload.camera_click_anywhere' | translate}}</h2>
     </div>
 
     <!-- <div *ngIf="errors.length > 0">
@@ -23,7 +28,8 @@
             <li>{{ error | json }}</li>
         </ul>
     </div> -->
-</div>
+</ng-container>
+
 
 <ng-template #noCameraExist>
     Camera device not available

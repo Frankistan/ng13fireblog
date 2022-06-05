@@ -26,6 +26,8 @@ mat-card {
             }
 
             .mat-tab-label {
+                color: #9AA0A6;
+
                 &.mat-tab-label-active {
                     background-color: transparent;
                     color: #8AB4F8;
@@ -45,6 +47,4 @@ mat-card {
             }
         }
     }
-
-    mat-card-actions {}
 }

@@ -72,7 +72,8 @@
             "failed": "Fail on loading image"
         },
         "upload": {
-            "camera_access_denied": "Camera access denied"
+            "camera_access_denied": "Camera access denied",
+            "camera_click_anywhere": "Click anywhere to take a photo"
         }
     },
     "dialog": {

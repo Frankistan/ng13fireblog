@@ -72,7 +72,8 @@
             "failed": "Error al cargar la imagen"
         },
         "upload": {
-            "camera_access_denied": "Acceso a la cámara denegado"
+            "camera_access_denied": "Acceso a la cámara denegado",
+            "camera_click_anywhere": "Haz clic en cualquier parte para hacer una foto"
         }
     },
     "dialog": {
