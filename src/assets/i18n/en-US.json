@@ -70,6 +70,9 @@
         },
         "cropper": {
             "failed": "Fail on loading image"
+        },
+        "upload": {
+            "camera_access_denied": "Camera access denied"
         }
     },
     "dialog": {

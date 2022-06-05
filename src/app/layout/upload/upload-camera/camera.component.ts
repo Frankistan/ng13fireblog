@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NotificationService } from '@app/services/notification.service';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 
@@ -18,7 +19,7 @@ https://github.com/basst314/ngx-webcam
     templateUrl: './camera.component.html',
     styleUrls: ['./camera.component.scss']
 })
-export class CameraComponent implements OnInit {
+export class CameraComponent implements OnInit, AfterViewInit {
     @Output()
     pictureTaken = new EventEmitter<WebcamImage>();
     // toggle webcam on/off
@@ -37,8 +38,9 @@ export class CameraComponent implements OnInit {
 
     // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
     private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
+    private errors$: Subject<WebcamInitError[]> = new Subject<WebcamInitError[]>();
 
-    constructor() { }
+    constructor(private _ntf: NotificationService) { }
 
     ngOnInit(): void {
         WebcamUtil.getAvailableVideoInputs()
@@ -61,6 +63,8 @@ export class CameraComponent implements OnInit {
 
         if (error.mediaStreamError && error.mediaStreamError.name === "NotAllowedError") {
             console.warn("Camera access was not allowed by user!");
+            error.message = 'toast.upload.camera_access_denied';
+            this.errors$.next(this.errors);
         }
     }
 
@@ -84,6 +88,13 @@ export class CameraComponent implements OnInit {
 
     get nextWebcamObservable(): Observable<boolean | string> {
         return this.nextWebcam.asObservable();
+    }
+
+
+    ngAfterViewInit(): void {
+        this.errors$.subscribe(errors => {
+            this._ntf.open(errors[0].message, 'toast.close', 2000);
+        });
     }
 
 }

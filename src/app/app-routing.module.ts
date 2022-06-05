@@ -17,6 +17,7 @@ import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } fr
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TestUploadDialogComponent } from './test/test-upload-dialog/test-upload-dialog.component';
 import { ImageEditorComponent } from './layout/image-editor/image-editor.component';
+import { UploadComponent } from './test/upload/upload.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/posts']);
@@ -51,6 +52,12 @@ const routes: Routes = [
         component: ImageEditorComponent,
         canActivate: [AuthGuard],
         data: { title: marker('title.image_editor'), authGuardPipe: redirectUnauthorizedToLogin }
+    },
+    {
+        path: "feeds",
+        component: UploadComponent,
+        canActivate: [AuthGuard],
+        data: { title: marker('title.feeds'), authGuardPipe: redirectUnauthorizedToLogin }
     },
     {
         path: "auth",

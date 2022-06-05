@@ -12,6 +12,13 @@
     border-radius: 2px;
 }
 
+::ng-deep .webcam-wrapper video,
+.snapshot img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
 ul.links {
     padding-bottom: 10px;
 }

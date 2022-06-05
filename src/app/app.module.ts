@@ -69,6 +69,7 @@ import { DropzoneComponent } from './layout/upload/upload-dropzone/dropzone.comp
 import { ImageEditorComponent } from './layout/image-editor/image-editor.component';
 import { FabScrollToTopComponent } from './layout/fab-scroll-to-top/fab-scroll-to-top.component';
 import { UploadUrlComponent } from './layout/upload/upload-url/upload-url.component';
+import { UploadComponent } from './test/upload/upload.component';
 
 
 /*
@@ -123,6 +124,7 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         ImageEditorComponent,
         FabScrollToTopComponent,
         UploadUrlComponent,
+        UploadComponent,
     ],
     imports: [
         AppRoutingModule,
