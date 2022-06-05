@@ -11,6 +11,7 @@ import {
     OutputFormat,
     LoadedImage
 } from 'ngx-image-cropper';
+import { BehaviorSubject } from 'rxjs';
 
 /*
 
@@ -38,10 +39,13 @@ get form URL http://www.programmersought.com/article/52582038406/
 })
 export class ImageEditorComponent implements OnInit {
 
+    loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
     fileName: string = "";
 
     /***** image cropper vars */
     @ViewChild(ImageCropperComponent, { static: false }) cropper: ImageCropperComponent;
+
     imageChangedEvent: any = '';
     croppedImage: any = '';
     canvasRotation = 0;
@@ -65,6 +69,7 @@ export class ImageEditorComponent implements OnInit {
 
     /************ image cropper fns *************/
     fileChangeEvent(e: any): void {
+        this.loading$.next(true);
         this.fileName = e.target.files[0].name;
         this.imageChangedEvent = e;
         this.croppedImage = null;
@@ -86,15 +91,18 @@ export class ImageEditorComponent implements OnInit {
     }
 
     imageLoaded(image: LoadedImage) {
+        this.loading$.next(false);
         this.showCropper = true;
         console.log('Image loaded');
     }
+
 
     cropperReady(sourceImageDimensions: Dimensions) {
         console.log('Cropper ready', sourceImageDimensions);
     }
 
     loadImageFailed() {
+        this.loading$.next(false);
         console.log('Load failed');
     }
 

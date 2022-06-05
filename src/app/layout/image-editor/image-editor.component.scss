@@ -23,13 +23,19 @@ mat-card {
 
 
         image-cropper {
-            max-height: 30rem;
+            max-height: 28rem;
 
         }
 
-
         --cropper-overlay-color:transparent;
         --cropper-outline-color:transparent;
+
+        mat-spinner {
+            ::ng-deep circle {
+                stroke: #8AB4F8;
+            }
+        }
+
     }
 
     mat-card-actions {
