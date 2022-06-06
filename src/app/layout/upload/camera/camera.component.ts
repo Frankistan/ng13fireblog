@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FileUploadService } from '@app/services/file-upload.service';
 import { NotificationService } from '@app/services/notification.service';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /*
 https://stackblitz.com/edit/github-g8zkqy
@@ -11,16 +11,17 @@ https://stackblitz.com/edit/ngx-webcam-demo
 https://edupala.com/how-capture-image-using-angular-camera/
 https://www.npmjs.com/package/ngx-webcam
 https://github.com/basst314/ngx-webcam
-
-
 */
 
 @Component({
-    selector: 'upload-camera',
-    templateUrl: './upload-camera.component.html',
-    styleUrls: ['./upload-camera.component.scss']
+    selector: 'camera',
+    templateUrl: './camera.component.html',
+    styleUrls: ['./camera.component.scss']
 })
-export class UploadCameraComponent implements OnInit, AfterViewInit {
+export class CameraComponent implements OnInit {
+
+    loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
     @Output()
     pictureTaken = new EventEmitter<WebcamImage>();
     // toggle webcam on/off
@@ -41,10 +42,7 @@ export class UploadCameraComponent implements OnInit, AfterViewInit {
     private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
     private errors$: Subject<WebcamInitError[]> = new Subject<WebcamInitError[]>();
 
-    constructor(
-        private _ntf: NotificationService,
-        public _fus: FileUploadService
-    ) { }
+    constructor(private _ntf: NotificationService, public fus: FileUploadService) { }
 
     ngOnInit(): void {
         WebcamUtil.getAvailableVideoInputs()
@@ -52,6 +50,14 @@ export class UploadCameraComponent implements OnInit, AfterViewInit {
                 this.isCameraExist = mediaDevices && mediaDevices.length > 0;
                 this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
             });
+    }
+
+    back() { }
+
+
+    reset() {
+        this.pictureTaken.emit(null);
+        this.onOffWebCame();
     }
 
     takeSnapshot(): void {
@@ -78,9 +84,8 @@ export class UploadCameraComponent implements OnInit, AfterViewInit {
 
     handleImage(webcamImage: WebcamImage) {
         this.pictureTaken.emit(webcamImage);
-        this._fus.file$.next(webcamImage.imageAsDataUrl);
+        this.fus.file$.next(webcamImage.imageAsDataUrl);
         console.log("PHOTO: ", webcamImage.imageAsDataUrl);
-
         this.showWebcam = false;
     }
 

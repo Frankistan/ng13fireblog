@@ -1,0 +1,49 @@
+mat-card {
+    background-color: #202124;
+    color: whitesmoke;
+    height: 41.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0;
+
+    mat-card-header {
+        line-height: 1rem;
+        font-size: 1.125rem;
+        letter-spacing: 0;
+        font-weight: 400;
+        padding: 0.5rem 0;
+    }
+
+    mat-card-content {
+        height: calc(100% - 9rem);
+
+        ::ng-deep mat-tab-group {
+            height: 100%;
+
+            &.mat-primary .mat-ink-bar,
+            .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+                background-color: #8AB4F8 !important;
+            }
+
+            .mat-tab-label {
+                color: #9AA0A6;
+
+                &.mat-tab-label-active {
+                    background-color: transparent;
+                    color: #8AB4F8;
+                    font-weight: 500;
+                    opacity: 1; // FIX Label has focused style after clicking - https://github.com/angular/components/issues/5903#issuecomment-802788039
+                }
+
+                &:hover {
+                    transition: 500ms cubic-bezier(0.35, 0, 0.25, 1);
+                    color: whitesmoke;
+                }
+            }
+
+            .mat-tab-body-wrapper {
+                height: 100%;
+                padding-top: 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-header fxLayoutAlign="center center">
+        Cambiar imagen de perfil
+    </mat-card-header>
+
+    <mat-card-content>
+
+        <mat-tab-group animationDuration="0ms" mat-stretch-tabs>
+            <mat-tab>
+                <ng-template mat-tab-label mat-tab-label-active>
+                    <span fxLayout="column" fxLayoutAlign="center center">
+                        <mat-icon class="example-tab-icon">laptop</mat-icon>
+                        <span>{{ 'upload.dialog.pc' | translate }}</span>
+                    </span>
+                </ng-template>
+
+                <dropzone></dropzone>
+
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span fxLayout="column" fxLayoutAlign="center center">
+                        <mat-icon class="example-tab-icon">language</mat-icon>
+                        <span>URL</span>
+                    </span>
+                </ng-template>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <span fxLayout="column" fxLayoutAlign="center center">
+                        <mat-icon class="example-tab-icon">linked_camera</mat-icon>
+                        <span>{{ 'upload.dialog.camera' | translate }}</span>
+                    </span>
+                </ng-template>
+
+                <!-- <upload-camera></upload-camera> -->
+
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-card-content>
+</mat-card>

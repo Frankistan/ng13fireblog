@@ -1,8 +1,8 @@
 mat-card {
     background-color: #202124;
     height: 41.25rem;
+
     border-radius: 0.5rem;
-    z-index: 1; // TODO: ES POSIBLE QUE HAYA QUE BORRARLO CUANDO SEA UN DIALOG
 
     .mat-card-header {
         color: #e8eaed;
@@ -18,9 +18,7 @@ mat-card {
     }
 
     mat-card-content {
-        height: 100%;
-        border: 1px solid red;
-
+        height: calc(100% - 9rem);
 
         image-cropper {
             max-height: 28rem;

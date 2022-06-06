@@ -18,7 +18,7 @@ mat-card {
     }
 
     mat-card-content {
-        height: 100%;
+        height: calc(100% - 9rem);
 
         mat-spinner {
             ::ng-deep circle {
@@ -31,6 +31,20 @@ mat-card {
             width: 100%;
             height: auto;
             max-height: 100%;
+        }
+
+        image-cropper {
+            max-height: 28rem;
+
+        }
+
+        --cropper-overlay-color:transparent;
+        --cropper-outline-color:transparent;
+
+        mat-spinner {
+            ::ng-deep circle {
+                stroke: #8AB4F8;
+            }
         }
 
     }

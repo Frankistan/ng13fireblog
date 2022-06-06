@@ -42,17 +42,15 @@ import { BtnMoreComponent } from './layout/btn-more/btn-more.component';
 import { BtnProfileComponent } from './layout/btn-profile/btn-profile.component';
 import { BtnSearchComponent } from './layout/btn-search/btn-search.component';
 import { BtnViewComponent } from './layout/btn-view/btn-view.component';
-
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultToolbarComponent } from './layout/toolbar/default-toolbar/default-toolbar.component';
-import { DropzoneComponent } from './layout/upload/upload-dropzone/dropzone.component';
+import { DropzoneComponent } from './layout/dropzone/dropzone.component';
 import { FabCreatePostComponent } from './layout/fab-create-post/fab-create-post.component';
 import { FabEditPostComponent } from './layout/fab-edit-post/fab-edit-post.component';
 import { FabScrollToTopComponent } from './layout/fab-scroll-to-top/fab-scroll-to-top.component';
 import { FeaturedImageComponent } from './layout/featured-image/featured-image.component';
 import { FileUploadComponent } from './layout/file-upload-form/file-upload-form.component';
 import { FileUploadDialogComponent } from './layout/dialogs/file-upload-dialog/file-upload-dialog.component'
-import { ImageEditorComponent } from './layout/image-editor/image-editor.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { NavToolbarComponent } from './layout/toolbar/nav-toolbar/nav-toolbar.component';
 import { PostComponent } from './pages/post/post/post.component';
@@ -67,11 +65,10 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SidenavContentComponent } from './layout/sidenav-content/sidenav-content.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
+import { CameraComponent } from './layout/upload/camera/camera.component';
+import { UploadSelectorComponent } from './layout/upload/upload-selector/upload-selector.component';
 import { UploadComponent } from './layout/upload/upload.component';
-import { UploadUrlComponent } from './layout/upload/upload-url/upload-url.component';
-import { UploadCameraComponent } from './layout/upload/upload-camera/upload-camera.component';
-import { CameraComponent } from './layout/camera/camera.component';
-import { UContainerComponent } from './test/u-container/u-container.component';
+import { ImageEditorComponent } from './layout/upload/image-editor/image-editor.component';
 
 /*
 https://github.com/Frankistan/ng13fireblog
@@ -107,7 +104,6 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         FeaturedImageComponent,
         FileUploadComponent,
         FileUploadDialogComponent,
-        ImageEditorComponent,
         LoginComponent,
         NavBarButtonsDirective,
         NavToolbarComponent,
@@ -124,9 +120,9 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         SidenavContentComponent,
         SignupComponent,
         UploadComponent,
-        UploadUrlComponent,
-        UploadCameraComponent,
-        UContainerComponent
+        CameraComponent,
+        UploadSelectorComponent,
+        ImageEditorComponent
     ],
     imports: [
         AppRoutingModule,

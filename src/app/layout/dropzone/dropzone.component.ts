@@ -1,52 +1,27 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
-
-/*  image cropper imports ****/
-import {
-    base64ToFile,
-    ImageTransform,
-    ImageCroppedEvent,
-    Dimensions,
-    ImageCropperComponent,
-    OutputFormat,
-    LoadedImage
-} from 'ngx-image-cropper';
-import { BehaviorSubject } from 'rxjs';
+import { FileUploadService } from '@app/services/file-upload.service';
+import { ImageCropperComponent, ImageTransform, ImageCroppedEvent, base64ToFile, Dimensions } from 'ngx-image-cropper';
 
 /*
-
-STYLE a CSS variable on HMTL
-https://stackoverflow.com/questions/63101535/change-css-variables-dynamically-in-angular#:~:text=%3Capp%2Dcomponent%2Dname%20%5Bstyle.%2D%2Dtheme%2Dcolor%2D1%3D%22%27%23CCC%27%22%3E%3C/app%2Dcomponent%2Dname%3E
-
-
-https://www.positronx.io/angular-image-upload-preview-crop-zoom-and-scale-example/
-https://openbase.com/js/ngx-img-cropper
-https://www.freakyjolly.com/ngx-image-cropper-tutorial/
-https://stackblitz.com/edit/image-cropper
-https://stackblitz.com/edit/resizing-cropping-image
-https://alyle.io/components/image-cropper
-https://codepen.io/enlcxx/pen/vmadQz
-https://stackblitz.com/edit/resizing-cropping-image
-ver como lo gestiona: https://stackblitz.com/edit/image-cropper-f2ltmr
-get form URL http://www.programmersought.com/article/52582038406/
+https://www.procodeprogramming.com/blogs/file-drag-and-drop-in-angular-10
 
 */
 
 @Component({
-    selector: 'app-image-editor',
-    templateUrl: './image-editor.component.html',
-    styleUrls: ['./image-editor.component.scss']
+    selector: 'dropzone',
+    templateUrl: './dropzone.component.html',
+    styleUrls: ['./dropzone.component.scss']
 })
-export class ImageEditorComponent implements OnInit {
+export class DropzoneComponent implements OnInit {
 
-    loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    isHovering: boolean; // State for dropzone CSS toggling
 
-
+    readonly maxSize = 5242880;  // 5 MB
     fileName: string = "";
 
     /***** image cropper vars */
     @ViewChild(ImageCropperComponent, { static: false }) cropper: ImageCropperComponent;
-
     imageChangedEvent: any = '';
     croppedImage: any = '';
     canvasRotation = 0;
@@ -56,24 +31,39 @@ export class ImageEditorComponent implements OnInit {
     containWithinAspectRatio = false;
     transform: ImageTransform = {};
     croppedImageFile: File;
-    format: OutputFormat = "jpeg";
+    format: string = "jpg";
 
-    constructor() { }
+    constructor(private fus: FileUploadService) { }
 
     ngOnInit(): void {
     }
 
-    back() {
-        console.log("go back");
-
+    toggleHover(event: boolean) {
+        this.isHovering = event;
     }
 
+    droppedEvent(event: any) {
+        console.log("FILENAME SELECTED by DROPPING: ", event[0]);
+
+        this.fus.file$.next(event[0]);
+    }
+
+    async startUpload(event: any) {
+        const url = await this.fus.upload(event[0].name, event[0]);
+        console.log("UPLOADED FILE URL:", url);
+    }
+
+
     /************ image cropper fns *************/
-    fileChangeEvent(e: any): void {
-        this.loading$.next(true);
-        this.fileName = e.target.files[0].name;
-        this.imageChangedEvent = e;
+    fileChangeEvent(event: any): void {
+        this.fileName = event.target.files[0].name;
+        this.imageChangedEvent = event;
         this.croppedImage = null;
+
+        console.log("FILENAME SELECTED by BUTTON: ", event.target.files[0]);
+
+        this.fus.file$.next(event.target.files[0]);
+
     }
 
     // automatic cropping on mousemove -- 
@@ -89,23 +79,18 @@ export class ImageEditorComponent implements OnInit {
         let e: ImageCroppedEvent = this.cropper.crop();
         this.croppedImage = e.base64;
         this.croppedImageFile = new File([base64ToFile(e.base64)], this.fileName);
-        console.log(this.croppedImageFile);
-
     }
 
-    imageLoaded(image: LoadedImage) {
-        this.loading$.next(false);
+    imageLoaded() {
         this.showCropper = true;
         console.log('Image loaded');
     }
-
 
     cropperReady(sourceImageDimensions: Dimensions) {
         console.log('Cropper ready', sourceImageDimensions);
     }
 
     loadImageFailed() {
-        this.loading$.next(false);
         console.log('Load failed');
     }
 
@@ -132,14 +117,14 @@ export class ImageEditorComponent implements OnInit {
     flipHorizontal() {
         this.transform = {
             ...this.transform,
-            flipV: !this.transform.flipV
+            flipH: !this.transform.flipH
         };
     }
 
     flipVertical() {
         this.transform = {
             ...this.transform,
-            flipH: !this.transform.flipH
+            flipV: !this.transform.flipV
         };
     }
 

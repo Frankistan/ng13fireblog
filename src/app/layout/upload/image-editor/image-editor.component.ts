@@ -1,27 +1,52 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { FileUploadService } from '@app/services/file-upload.service';
-import { ImageCropperComponent, ImageTransform, ImageCroppedEvent, base64ToFile, Dimensions } from 'ngx-image-cropper';
+
+/*  image cropper imports ****/
+import {
+    base64ToFile,
+    ImageTransform,
+    ImageCroppedEvent,
+    Dimensions,
+    ImageCropperComponent,
+    OutputFormat,
+    LoadedImage
+} from 'ngx-image-cropper';
+import { BehaviorSubject } from 'rxjs';
 
 /*
-https://www.procodeprogramming.com/blogs/file-drag-and-drop-in-angular-10
+
+STYLE a CSS variable on HMTL
+https://stackoverflow.com/questions/63101535/change-css-variables-dynamically-in-angular#:~:text=%3Capp%2Dcomponent%2Dname%20%5Bstyle.%2D%2Dtheme%2Dcolor%2D1%3D%22%27%23CCC%27%22%3E%3C/app%2Dcomponent%2Dname%3E
+
+
+https://www.positronx.io/angular-image-upload-preview-crop-zoom-and-scale-example/
+https://openbase.com/js/ngx-img-cropper
+https://www.freakyjolly.com/ngx-image-cropper-tutorial/
+https://stackblitz.com/edit/image-cropper
+https://stackblitz.com/edit/resizing-cropping-image
+https://alyle.io/components/image-cropper
+https://codepen.io/enlcxx/pen/vmadQz
+https://stackblitz.com/edit/resizing-cropping-image
+ver como lo gestiona: https://stackblitz.com/edit/image-cropper-f2ltmr
+get form URL http://www.programmersought.com/article/52582038406/
 
 */
 
 @Component({
-    selector: 'upload-dropzone',
-    templateUrl: './dropzone.component.html',
-    styleUrls: ['./dropzone.component.scss']
+    selector: 'image-editor',
+    templateUrl: './image-editor.component.html',
+    styleUrls: ['./image-editor.component.scss']
 })
-export class DropzoneComponent implements OnInit {
+export class ImageEditorComponent implements OnInit {
 
-    isHovering: boolean; // State for dropzone CSS toggling
+    loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-    readonly maxSize = 5242880;  // 5 MB
     fileName: string = "";
 
     /***** image cropper vars */
     @ViewChild(ImageCropperComponent, { static: false }) cropper: ImageCropperComponent;
+
     imageChangedEvent: any = '';
     croppedImage: any = '';
     canvasRotation = 0;
@@ -31,34 +56,23 @@ export class DropzoneComponent implements OnInit {
     containWithinAspectRatio = false;
     transform: ImageTransform = {};
     croppedImageFile: File;
-    format: string = "jpg";
+    format: OutputFormat = "jpeg";
 
-    constructor(private fus: FileUploadService) { }
+    constructor(public fus: FileUploadService) { }
 
-    ngOnInit(): void {
+    ngOnInit(): void { }
+
+    back() {
+        this.fus.file$.next(null);
     }
-
-    toggleHover(event: boolean) {
-        this.isHovering = event;
-    }
-
-    droppedEvent(event: any) {
-        console.log("FILENAME SELECTED by DROPPING: ", event[0]);
-    }
-
-    async startUpload(event: any) {
-        const url = await this.fus.upload(event[0].name, event[0]);
-        console.log("UPLOADED FILE URL:", url);
-    }
-
 
     /************ image cropper fns *************/
-    fileChangeEvent(event: any): void {
-        this.fileName = event.target.files[0].name;
-        this.imageChangedEvent = event;
+    fileChangeEvent(e: any): void {
+        this.loading$.next(true);
+        this.fileName = e.target.files[0].name;
+        this.imageChangedEvent = e;
         this.croppedImage = null;
-
-        console.log("FILENAME SELECTED by BUTTON: ", event.target.files[0]);
+        console.log("fileChangeEvent: ", e.target.files[0]);
 
     }
 
@@ -75,18 +89,26 @@ export class DropzoneComponent implements OnInit {
         let e: ImageCroppedEvent = this.cropper.crop();
         this.croppedImage = e.base64;
         this.croppedImageFile = new File([base64ToFile(e.base64)], this.fileName);
+        console.log("crop: ", this.croppedImageFile);
+
     }
 
-    imageLoaded() {
+    imageLoaded(image: LoadedImage) {
+        console.log("imageLoaded: ", image);
+
         this.showCropper = true;
-        console.log('Image loaded');
+        this.loading$.next(false);
+
     }
+
 
     cropperReady(sourceImageDimensions: Dimensions) {
-        console.log('Cropper ready', sourceImageDimensions);
+        this.loading$.next(false);
+        console.log('Cropper ready: ', sourceImageDimensions);
     }
 
     loadImageFailed() {
+        this.loading$.next(false);
         console.log('Load failed');
     }
 
@@ -113,14 +135,14 @@ export class DropzoneComponent implements OnInit {
     flipHorizontal() {
         this.transform = {
             ...this.transform,
-            flipH: !this.transform.flipH
+            flipV: !this.transform.flipV
         };
     }
 
     flipVertical() {
         this.transform = {
             ...this.transform,
-            flipV: !this.transform.flipV
+            flipH: !this.transform.flipH
         };
     }
 

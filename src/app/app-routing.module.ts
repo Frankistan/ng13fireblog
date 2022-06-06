@@ -15,10 +15,7 @@ import { SignupComponent } from './pages/auth/signup/signup.component';
 // import { LoggedInGuard } from './guards/logged-in.guard';
 import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } from '@angular/fire/auth-guard';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { ImageEditorComponent } from './layout/image-editor/image-editor.component';
 import { UploadComponent } from './layout/upload/upload.component';
-import { CameraComponent } from './layout/camera/camera.component';
-import { UContainerComponent } from './test/u-container/u-container.component';
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/auth/login']);
@@ -49,21 +46,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: { title: marker('title.uploads'), authGuardPipe: redirectUnauthorizedToLogin }
     },
-    {
-        path: "image-editor",
-        component: ImageEditorComponent,
-        canActivate: [AuthGuard],
-        data: { title: marker('title.image_editor'), authGuardPipe: redirectUnauthorizedToLogin }
-    },
-    {
-        path: "camera",
-        component: CameraComponent,
-        canActivate: [AuthGuard],
-        data: { title: marker('title.feeds'), authGuardPipe: redirectUnauthorizedToLogin }
-    },
+
+
     {
         path: "help",
-        component: UContainerComponent,
+        component: SettingsComponent,
         canActivate: [AuthGuard],
         data: { title: marker('title.help'), authGuardPipe: redirectUnauthorizedToLogin }
     },
