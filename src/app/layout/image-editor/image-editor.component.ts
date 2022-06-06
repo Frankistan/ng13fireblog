@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 
 /*  image cropper imports ****/
@@ -40,6 +40,7 @@ get form URL http://www.programmersought.com/article/52582038406/
 export class ImageEditorComponent implements OnInit {
 
     loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
 
     fileName: string = "";
 

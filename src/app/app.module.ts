@@ -42,7 +42,7 @@ import { BtnMoreComponent } from './layout/btn-more/btn-more.component';
 import { BtnProfileComponent } from './layout/btn-profile/btn-profile.component';
 import { BtnSearchComponent } from './layout/btn-search/btn-search.component';
 import { BtnViewComponent } from './layout/btn-view/btn-view.component';
-import { CameraComponent } from './layout/upload/upload-camera/camera.component';
+
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DefaultToolbarComponent } from './layout/toolbar/default-toolbar/default-toolbar.component';
 import { DropzoneComponent } from './layout/upload/upload-dropzone/dropzone.component';
@@ -69,6 +69,9 @@ import { SidenavContentComponent } from './layout/sidenav-content/sidenav-conten
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { UploadComponent } from './layout/upload/upload.component';
 import { UploadUrlComponent } from './layout/upload/upload-url/upload-url.component';
+import { UploadCameraComponent } from './layout/upload/upload-camera/upload-camera.component';
+import { CameraComponent } from './layout/camera/camera.component';
+import { UContainerComponent } from './test/u-container/u-container.component';
 
 /*
 https://github.com/Frankistan/ng13fireblog
@@ -122,6 +125,8 @@ https://tburleson-layouts-demos.firebaseapp.com/#/docs
         SignupComponent,
         UploadComponent,
         UploadUrlComponent,
+        UploadCameraComponent,
+        UContainerComponent
     ],
     imports: [
         AppRoutingModule,

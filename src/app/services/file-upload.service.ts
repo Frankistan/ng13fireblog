@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
     Storage,
     ref,
@@ -15,6 +15,9 @@ import { environment } from '@env/environment';
     providedIn: 'root'
 })
 export class FileUploadService {
+
+    file$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    // file: Observable<any> = this.file$.asObservable();
 
     uploadPercent: Observable<{
         progress: number;

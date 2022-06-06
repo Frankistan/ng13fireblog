@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FileUploadService } from '@app/services/file-upload.service';
 import { NotificationService } from '@app/services/notification.service';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
@@ -16,10 +17,10 @@ https://github.com/basst314/ngx-webcam
 
 @Component({
     selector: 'upload-camera',
-    templateUrl: './camera.component.html',
-    styleUrls: ['./camera.component.scss']
+    templateUrl: './upload-camera.component.html',
+    styleUrls: ['./upload-camera.component.scss']
 })
-export class CameraComponent implements OnInit, AfterViewInit {
+export class UploadCameraComponent implements OnInit, AfterViewInit {
     @Output()
     pictureTaken = new EventEmitter<WebcamImage>();
     // toggle webcam on/off
@@ -40,7 +41,10 @@ export class CameraComponent implements OnInit, AfterViewInit {
     private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
     private errors$: Subject<WebcamInitError[]> = new Subject<WebcamInitError[]>();
 
-    constructor(private _ntf: NotificationService) { }
+    constructor(
+        private _ntf: NotificationService,
+        public _fus: FileUploadService
+    ) { }
 
     ngOnInit(): void {
         WebcamUtil.getAvailableVideoInputs()
@@ -74,6 +78,9 @@ export class CameraComponent implements OnInit, AfterViewInit {
 
     handleImage(webcamImage: WebcamImage) {
         this.pictureTaken.emit(webcamImage);
+        this._fus.file$.next(webcamImage.imageAsDataUrl);
+        console.log("PHOTO: ", webcamImage.imageAsDataUrl);
+
         this.showWebcam = false;
     }
 

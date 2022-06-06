@@ -1,4 +1,4 @@
-import { trigger, animate, transition, style } from '@angular/animations';
+import { trigger, animate, transition, style, group, query } from '@angular/animations';
 
 export const slideUp =
     trigger('slideUp', [
